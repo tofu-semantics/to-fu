@@ -1,0 +1,113 @@
+.form-horizontal .control-group{
+    margin-bottom:8px
+}
+.box {
+    background-color: #dddddd;
+    color: black;
+    border: 5px solid gray;
+    position: absolute;
+    width: 150px;
+    height: 150px;
+}
+.dropbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    width: 150px;
+    height: 150px;
+    left: 0;
+    top: 0;
+    float: left;
+    border: 1px solid black;
+}
+.carousel-img {
+    align: middle;
+}
+
+.carousel-control{
+    font-size: 30px
+}
+.carousel-control i{
+    margin-top: 6px;
+}
+.item{
+    min-height: 490px;
+    padding-left: 70px;
+    padding-right: 70px;
+    text-align: center;
+}
+
+.carousel-caption{
+    font-size: 21px;
+    color: #EEE;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    position:fixed;
+    bottom:40px
+
+}
+.action-panel {
+    font-size: 20px;
+    margin-right: 20px; 
+}
+
+.action-panel-button {
+    color: #aaa;
+    font-size: 26px;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+    padding-right:9px;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    transition: all .1s linear;
+}
+
+.action-panel-button:hover {
+    color: #fcfcfc;
+    text-decoration: none;
+}
+
+
+.form-horizontal{
+    margin-bottom: 2px
+}
+
+.navbar-inner{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.navbar-fixed-bottom .brand {
+    padding-right: 0px;
+    padding-left: 0;
+    margin-left: 20px;
+    float: right;
+    font-weight: bold;
+    color: #888;
+    text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .2s linear;
+}
+.navbar-fixed-top .brand:hover {
+    text-decoration: none;
+}
+.nav a{
+    font-size: 18px
+}
+.dropdown-menu a{
+    font-size: 16px
+}
+
+.carousel-caption-fixed {
+    position: fixed;
+}
+pre{
+    padding:0px;
+    margin-top:10px;
+}
+code {
+    max-height:440px;
+    overflow-y: scroll;
+    text-align:left;
+}

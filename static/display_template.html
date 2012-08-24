@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Graphing</title>
+        <script language="javascript">
+            function get_filename() {
+                return document.location.href.split("/").slice(-1)[0];
+            }
+            function is_image() {
+                var re = /\.(jpg|gif|png)$/;
+                return re.test(get_filename());
+            }
+            function get_placeholder_url() {
+                var urls = ["/static/rabbit.jpg",
+                        "/static/zoidberg.jpg",
+                        "/static/keanu.jpg",
+                        "/static/couragewolf.jpg"];
+                var index = Math.floor(Math.random() * urls.length);
+                return urls[index];
+            }
+
+            function init() {
+                var url = "http://" + document.location.host + "/i/" +
+                          get_filename();
+
+                // Set up the url boxes
+                var urlbox = document.getElementById("url");
+                urlbox.innerHTML = '<a href="'+url+'">'+url+'</a>';
+                var ghurlbox = document.getElementById("ghurl");
+                ghurlbox.innerText = "![Your_alt_text_here]("+url+")";
+                var tracurlbox = document.getElementById("tracurl");
+                tracurlbox.innerText = "[[Image("+url+")]]";
+                
+                // Set up the preview image
+                var preview = document.getElementById("preview");
+                var imgurl;
+                if (!is_image()) {
+                    preview.innerHTML = "<h1> Preview not available for this file type. Enjoy this placeholder. </h1>";
+                    imgurl = get_placeholder_url();
+                } else {
+                    imgurl = url;
+                }
+                var img = document.createElement("img");
+                img.setAttribute("src", imgurl);
+                img.setAttribute("id", "previewimg");
+                preview.appendChild(img);
+                img.setAttribute("style",
+                    img.clientHeight > img.clientWidth ?
+                    "height: 100%" : "width: 100%");
+
+            }
+        </script>
+        <style>
+            h1 {
+                font-family: sans-serif;
+            }
+            div#preview {
+                float: left;
+                margin-left: 2%;
+                width: 55%;
+                border: 2px solid black;
+            }
+            div#sidebar {
+                float: right;
+                width: 35%;
+                margin-right: 2%;
+                font-family: sans-serif;
+            }
+            .urlbox {
+                font-size: 80%;
+                border: 1px solid gray;
+                margin-left: 5%;
+                margin-right: 15%;
+                margin-top: 1%;
+                padding-left: 1%;
+                padding-top: 1%;
+                padding-bottom: 1%;
+                padding-right: 1%;
+            }
+        </style>
+    </head>
+    <body onload="init()">
+        <div id="preview"></div>
+        <div id="sidebar">
+            <div id="urlcontainer">
+                File URL
+                <div id="url" class="urlbox"></div>
+                <br/>
+                Markdown URL (paste into GitHub!)
+                <div id="ghurl" class="urlbox"></div>
+                <br/>
+                Trac-format URL
+                <div id="tracurl" class="urlbox"></div>
+            </div>
+        </div>
+    </body>
+</html>

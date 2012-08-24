@@ -1,0 +1,543 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+<style type="text/css">
+<![CDATA[
+svg {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Trying to get SVG to act like a greedy block in all browsers */
+  display: block;
+  width:100%;
+  height:100%;
+}
+
+
+svg text {
+  font: normal 12px sans-serif;
+}
+
+svg .title {
+ font: bold 14px Arial;
+}
+
+.nvd3 .nv-background {
+  fill: none;
+  /*
+  pointer-events: none;
+  */
+}
+
+.nvd3.nv-noData {
+  font-size: 18px;
+  font-weight: bolf;
+}
+
+
+/**********
+*  Brush
+*/
+
+.nv-brush .extent {
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+
+
+/**********
+*  Legend
+*/
+
+.nvd3 .nv-legend .nv-series {
+  cursor: pointer;
+}
+
+.nvd3 .nv-legend .disabled circle {
+  fill-opacity: 0;
+}
+
+
+
+/**********
+*  Axes
+*/
+
+.nvd3 .nv-axis path {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .75;
+  shape-rendering: crispEdges;
+}
+
+.nvd3 .nv-axis path.domain {
+  stroke-opacity: .75;
+}
+
+.nvd3 .nv-axis line {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .25;
+  shape-rendering: crispEdges;
+}
+
+.nvd3 .nv-axis line.zero {
+  stroke-opacity: .75;
+}
+
+.nvd3 .nv-axis .nv-axisMaxMin text {
+  font-weight: bold;
+}
+
+
+/**********
+*  Brush
+*/
+
+.nv-brush .resize path {
+  fill: #eee;
+  stroke: #666;
+}
+
+
+
+/**********
+*  Bars
+*/
+
+.nvd3 .nv-bars .negative rect {
+    zfill: brown;
+    cursor: pointer;
+}
+
+.nvd3 .nv-bars rect {
+  zfill: steelblue;
+  cursor: pointer;
+  fill-opacity: .75;
+
+  transition: fill-opacity 250ms linear;
+  -moz-transition: fill-opacity 250ms linear;
+  -webkit-transition: fill-opacity 250ms linear;
+}
+
+.nvd3 .nv-bars rect:hover {
+  fill-opacity: 1;
+}
+
+.nvd3 .nv-bars .hover rect {
+  fill: lightblue;
+}
+
+.nvd3 .nv-bars text {
+  fill: rgba(0,0,0,0);
+}
+
+.nvd3 .nv-bars .hover text {
+  fill: rgba(0,0,0,1);
+}
+
+.nvd3 .nv-x.nv-axis text {
+  transform: rotate(90);
+}
+
+
+/**********
+*  Bars
+*/
+
+.nvd3 .nv-multibar .nv-groups rect,
+.nvd3 .nv-multibarHorizontal .nv-groups rect,
+.nvd3 .nv-discretebar .nv-groups rect {
+  stroke-opacity: 0;
+
+  transition: fill-opacity 250ms linear;
+  -moz-transition: fill-opacity 250ms linear;
+  -webkit-transition: fill-opacity 250ms linear;
+}
+
+.nvd3 .nv-multibar .nv-groups rect:hover,
+.nvd3 .nv-multibarHorizontal .nv-groups rect:hover,
+.nvd3 .nv-discretebar .nv-groups rect:hover {
+  fill-opacity: 1;
+}
+
+.nvd3 .nv-discretebar .nv-groups text,
+.nvd3 .nv-multibarHorizontal .nv-groups text {
+  font-weight: bold;
+  fill: rgba(0,0,0,1);
+  stroke: rgba(0,0,0,0);
+}
+
+/***********
+*  Pie Chart
+*/
+
+.nvd3.nv-pie path {
+  stroke-opacity: 0;
+
+  transition: fill-opacity 250ms linear, stroke-width 250ms linear, stroke-opacity 250ms linear;
+  -moz-transition: fill-opacity 250ms linear, stroke-width 250ms linear, stroke-opacity 250ms linear;
+  -webkit-transition: fill-opacity 250ms linear, stroke-width 250ms linear, stroke-opacity 250ms linear;
+
+}
+
+.nvd3.nv-pie .nv-slice text {
+  stroke: #000;
+  stroke-width: 0;
+}
+
+.nvd3.nv-pie path {
+  stroke: #fff;
+  stroke-width: 1px;
+  stroke-opacity: 1;
+}
+
+.nvd3.nv-pie .hover path {
+  fill-opacity: .7;
+/*
+  stroke-width: 6px;
+  stroke-opacity: 1;
+*/
+}
+
+.nvd3.nv-pie .nv-label rect {
+  fill-opacity: 0;
+  stroke-opacity: 0;
+}
+
+/**********
+* Lines
+*/
+
+.nvd3 .nv-groups path.nv-line {
+  fill: none;
+  stroke-width: 2.5px;
+  stroke-linecap: round;
+  shape-rendering: geometricPrecision;
+
+  /*
+  transition: stroke-width 250ms linear;
+  -moz-transition: stroke-width 250ms linear;
+  -webkit-transition: stroke-width 250ms linear;
+
+  transition-delay: 250ms
+  -moz-transition-delay: 250ms;
+  -webkit-transition-delay: 250ms;
+  */
+}
+
+.nvd3 .nv-groups path.nv-area {
+  stroke: none;
+  stroke-linecap: round;
+  shape-rendering: geometricPrecision;
+
+  /*
+  stroke-width: 2.5px;
+  transition: stroke-width 250ms linear;
+  -moz-transition: stroke-width 250ms linear;
+  -webkit-transition: stroke-width 250ms linear;
+
+  transition-delay: 250ms
+  -moz-transition-delay: 250ms;
+  -webkit-transition-delay: 250ms;
+  */
+}
+
+.nvd3 .nv-line.hover path {
+  stroke-width: 6px;
+}
+
+/*
+.nvd3.scatter .groups .point {
+  fill-opacity: 0.1;
+  stroke-opacity: 0.1;
+}
+  */
+
+.nvd3.nv-line .nvd3.nv-scatter .nv-groups .nv-point {
+  fill-opacity: 0;
+  stroke-opacity: 0;
+}
+
+.nvd3.nv-scatter.nv-single-point .nv-groups .nv-point {
+  fill-opacity: .5;
+  stroke-opacity: .5;
+}
+
+
+.nvd3 .nv-groups .nv-point {
+  transition: stroke-width 250ms linear, stroke-opacity 250ms linear;
+  -moz-transition: stroke-width 250ms linear, stroke-opacity 250ms linear;
+  -webkit-transition: stroke-width 250ms linear, stroke-opacity 250ms linear;
+}
+
+.nvd3.nv-scatter .nv-groups .nv-point.hover,
+.nvd3 .nv-groups .nv-point.hover {
+  stroke-width: 20px;
+  fill-opacity: .5 !important;
+  stroke-opacity: .5 !important;
+}
+
+
+.nvd3 .nv-point-paths path {
+  stroke: #aaa;
+  stroke-opacity: 0;
+  fill: #eee;
+  fill-opacity: 0;
+}
+
+
+
+.nvd3 .nv-indexLine {
+  cursor: ew-resize;
+}
+
+
+/**********
+* Distribution
+*/
+
+.nvd3 .nv-distribution {
+  pointer-events: none;
+}
+
+
+
+/**********
+*  Scatter
+*/
+
+.nvd3 .nv-groups .nv-point {
+  pointer-events: none;
+}
+
+.nvd3 .nv-groups .nv-point.hover {
+  stroke-width: 20px;
+  stroke-opacity: .5;
+}
+
+.nvd3 .nv-scatter .nv-point.hover {
+  fill-opacity: 1;
+}
+
+/*
+.nv-group.hover .nv-point {
+  fill-opacity: 1;
+}
+*/
+
+
+/**********
+*  Stacked Area
+*/
+
+.nvd3.nv-stackedarea path.nv-area {
+  fill-opacity: .7;
+  /*
+  stroke-opacity: .65;
+  fill-opacity: 1;
+  */
+  stroke-opacity: 0;
+
+  transition: fill-opacity 250ms linear, stroke-opacity 250ms linear;
+  -moz-transition: fill-opacity 250ms linear, stroke-opacity 250ms linear;
+  -webkit-transition: fill-opacity 250ms linear, stroke-opacity 250ms linear;
+
+  /*
+  transition-delay: 500ms;
+  -moz-transition-delay: 500ms;
+  -webkit-transition-delay: 500ms;
+  */
+
+}
+
+.nvd3.nv-stackedarea path.nv-area.hover {
+  fill-opacity: .9;
+  /*
+  stroke-opacity: .85;
+  */
+}
+/*
+.d3stackedarea .groups path {
+  stroke-opacity: 0;
+}
+  */
+
+
+
+.nvd3.nv-stackedarea .nv-groups .nv-point {
+  stroke-opacity: 0;
+  fill-opacity: 0;
+}
+
+.nvd3.nv-stackedarea .nv-groups .nv-point.hover {
+  stroke-width: 20px;
+  stroke-opacity: .75;
+  fill-opacity: 1;
+}
+
+
+
+/**********
+*  Line Plus Bar
+*/
+
+.nvd3.nv-linePlusBar .nv-bar rect {
+  fill-opacity: .75;
+}
+
+.nvd3.nv-linePlusBar .nv-bar rect:hover {
+  fill-opacity: 1;
+}
+
+
+/**********
+*  Bullet
+*/
+
+.nvd3.nv-bullet { font: 10px sans-serif; cursor: pointer; }
+.nvd3.nv-bullet rect { fill-opacity: .6; }
+.nvd3.nv-bullet rect:hover { fill-opacity: 1; }
+.nvd3.nv-bullet .nv-marker { stroke: #000; stroke-width: 2px; }
+.nvd3.nv-bullet .nv-markerTriangle { stroke: #000; fill: #fff; stroke-width: 1.5px; }
+.nvd3.nv-bullet .nv-tick line { stroke: #666; stroke-width: .5px; }
+.nvd3.nv-bullet .nv-range.nv-s0 { fill: #eee; }
+.nvd3.nv-bullet .nv-range.nv-s1 { fill: #ddd; }
+.nvd3.nv-bullet .nv-range.nv-s2 { fill: #ccc; }
+.nvd3.nv-bullet .nv-measure.nv-s0 { fill: steelblue; }
+.nvd3.nv-bullet .nv-measure.nv-s1 { fill: darkblue; }
+.nvd3.nv-bullet .nv-title { font-size: 14px; font-weight: bold; }
+.nvd3.nv-bullet .nv-subtitle { fill: #999; }
+
+
+
+
+/**********
+* Sparkline plus
+*/
+
+.nvd3.nv-sparklineplus .nv-hoverValue line {
+  stroke: #f44;
+  stroke-width: 1.5px;
+ }
+
+.nvd3.nv-sparklineplus,
+.nvd3.nv-sparklineplus g {
+  pointer-events: all;
+}
+
+.nvd3 .nv-hoverArea {
+  fill-opacity: 0;
+  stroke-opacity: 0;
+}
+
+.nvd3.nv-sparklineplus .nv-xValue,
+.nvd3.nv-sparklineplus .nv-yValue {
+  stroke: #666;
+  font-size: .5em;
+  font-weight: normal;
+}
+
+.nvd3.nv-sparklineplus .nv-yValue {
+  stroke: #f66;
+}
+
+
+/**********
+* historical stock
+*/
+
+.nvd3.nv-ohlcBar .nv-ticks .nv-tick {
+  stroke-width: 2px;
+}
+
+.nvd3.nv-ohlcBar .nv-ticks .nv-tick.hover {
+  stroke-width: 4px;
+}
+
+.nvd3.nv-ohlcBar .nv-ticks .nv-tick.positive {
+ stroke: #2ca02c;
+}
+
+.nvd3.nv-ohlcBar .nv-ticks .nv-tick.negative {
+ stroke: #d62728;
+}
+
+.nvd3.nv-historicalStockChart .nv-axis .nv-axislabel {
+  font-weight: bold;
+}
+
+.nvd3.nv-historicalStockChart .nv-dragTarget {
+  fill-opacity: 0;
+  stroke: none;
+  cursor: move;
+}
+
+.nvd3 .nv-brush .extent {
+  /*
+  cursor: ew-resize !important;
+  */
+  fill-opacity: 0 !important;
+}
+
+.nvd3 .nv-brushBackground rect {
+  stroke: #000;
+  stroke-width: .4;
+  fill: #fff;
+  fill-opacity: .7;
+}
+
+
+
+/**********
+* Indented Tree
+*/
+
+
+/**
+ * TODO: the following 3 selectors are based on classes used in the example.  I should either make them standard and leave them here, or move to a CSS file not included in the library
+ */
+.nvd3.nv-indentedtree .name {
+  margin-left: 5px;
+}
+
+.nvd3.nv-indentedtree .clickable {
+  color: #08C;
+  cursor: pointer;
+}
+
+.nvd3.nv-indentedtree span.clickable:hover {
+  color: #005580;
+  text-decoration: underline;
+}
+
+
+.nvd3.nv-indentedtree .nv-childrenCount {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.nvd3.nv-indentedtree .nv-treeicon {
+  cursor: pointer;
+  /*
+  cursor: n-resize;
+  */
+}
+
+.nvd3.nv-indentedtree .nv-treeicon.nv-folded {
+  cursor: pointer;
+  /*
+  cursor: s-resize;
+  */
+}
+]]>
+</style>
+<g class="nvd3 nv-wrap nv-scatterChart nv-chart-78115" transform="translate(60,30)"><g><rect class="nvd3 nv-background" width="950" height="370"></rect><g class="nv-x nv-axis" transform="translate(0,370)"><g class="nvd3 nv-wrap nv-axis"><g><g style="opacity: 1; " transform="translate(52.41240692138672,0)"><line class="tick" y2="-370" x2="0"></line><text y="10" dy=".71em" text-anchor="middle" x="0">0.20</text></g><g style="opacity: 1; " transform="translate(128.33859252929688,0)"><line class="tick" y2="-370" x2="0"></line><text y="10" dy=".71em" text-anchor="middle" x="0">0.30</text></g><g style="opacity: 1; " transform="translate(204.26478576660156,0)"><line class="tick" y2="-370" x2="0"></line><text y="10" dy=".71em" text-anchor="middle" x="0">0.40</text></g><g style="opacity: 1; " transform="translate(280.19097900390625,0)"><line class="tick" y2="-370" x2="0"></line><text y="10" dy=".71em" text-anchor="middle" x="0">0.50</text></g><g style="opacity: 1; " transform="translate(356.1171569824219,0)"><line class="tick" y2="-370" x2="0"></line><text y="10" dy=".71em" text-anchor="middle" x="0">0.60</text></g><g style="opacity: 1; " transform="translate(432.0433654785156,0)"><line class="tick" y2="-370" x2="0"></line><text y="10" dy=".71em" text-anchor="middle" x="0">0.70</text></g><g style="opacity: 1; " transform="translate(507.96954345703125,0)"><line class="tick" y2="-370" x2="0"></line><text y="10" dy=".71em" text-anchor="middle" x="0">0.80</text></g><g style="opacity: 1; " transform="translate(583.895751953125,0)"><line class="tick" y2="-370" x2="0"></line><text y="10" dy=".71em" text-anchor="middle" x="0">0.90</text></g><g style="opacity: 1; " transform="translate(659.8219604492188,0)"><line class="tick" y2="-370" x2="0"></line><text y="10" dy=".71em" text-anchor="middle" x="0">1.00</text></g><g style="opacity: 1; " transform="translate(735.7481079101562,0)"><line class="tick" y2="-370" x2="0"></line><text y="10" dy=".71em" text-anchor="middle" x="0">1.10</text></g><g style="opacity: 1; " transform="translate(811.67431640625,0)"><line class="tick" y2="-370" x2="0"></line><text y="10" dy=".71em" text-anchor="middle" x="0">1.20</text></g><g style="opacity: 1; " transform="translate(887.6005249023438,0)"><line class="tick" y2="-370" x2="0"></line><text y="10" dy=".71em" text-anchor="middle" x="0">1.30</text></g><path class="domain" d="M0,0V0H950V0"></path><text class="nv-axislabel" text-anchor="middle" y="30" x="475"></text></g><g class="nv-axisMaxMin" transform="translate(0,0)"><text dy=".71em" y="10" transform="rotate(0 0,0)" text-anchor="end">0.13</text></g><g class="nv-axisMaxMin" transform="translate(950,0)"><text dy=".71em" y="10" transform="rotate(0 0,0)" text-anchor="end">1.38</text></g></g></g><g class="nv-y nv-axis"><g class="nvd3 nv-wrap nv-axis"><g><g style="opacity: 1; " transform="translate(0,357.5246797574961)"><line class="tick" x2="950" y2="0"></line><text x="-10" dy=".32em" text-anchor="end" y="0">−2.40</text></g>
+<g style="opacity: 1; " transform="translate(0,330.7934359755396)"><line class="tick" x2="950" y2="0"></line><text x="-10" dy=".32em" text-anchor="end" y="0">−2.20</text></g><g style="opacity: 1; " transform="translate(0,304.0621921935832)"><line class="tick" x2="950" y2="0"></line><text x="-10" dy=".32em" text-anchor="end" y="0">−2.00</text></g><g style="opacity: 1; " transform="translate(0,277.33094841162676)"><line class="tick" x2="950" y2="0"></line><text x="-10" dy=".32em" text-anchor="end" y="0">−1.80</text></g><g style="opacity: 1; " transform="translate(0,250.59970462967038)"><line class="tick" x2="950" y2="0"></line><text x="-10" dy=".32em" text-anchor="end" y="0">−1.60</text></g><g style="opacity: 1; " transform="translate(0,223.868460847714)"><line class="tick" x2="950" y2="0"></line><text x="-10" dy=".32em" text-anchor="end" y="0">−1.40</text></g><g style="opacity: 1; " transform="translate(0,197.1372170657576)"><line class="tick" x2="950" y2="0"></line><text x="-10" dy=".32em" text-anchor="end" y="0">−1.20</text></g><g style="opacity: 1; " transform="translate(0,170.40597328380122)"><line class="tick" x2="950" y2="0"></line><text x="-10" dy=".32em" text-anchor="end" y="0">−1.00</text></g><g style="opacity: 1; " transform="translate(0,143.67472950184478)"><line class="tick" x2="950" y2="0"></line><text x="-10" dy=".32em" text-anchor="end" y="0">−0.80</text></g><g style="opacity: 1; " transform="translate(0,116.94348571988837)"><line class="tick" x2="950" y2="0"></line><text x="-10" dy=".32em" text-anchor="end" y="0">−0.60</text></g><g style="opacity: 1; " transform="translate(0,90.21224193793199)"><line class="tick" x2="950" y2="0"></line><text x="-10" dy=".32em" text-anchor="end" y="0">−0.40</text></g><g style="opacity: 1; " transform="translate(0,63.480998155975556)"><line class="tick" x2="950" y2="0"></line><text x="-10" dy=".32em" text-anchor="end" y="0">−0.20</text></g><g style="opacity: 1; " transform="translate(0,36.749754374019176)"><line class="tick zero" x2="950" y2="0"></line><text x="-10" dy=".32em" text-anchor="end" y="0">−0.00</text></g><g style="opacity: 1; " transform="translate(0,10.01851059206274)"><line class="tick" x2="950" y2="0"></line><text x="-10" dy=".32em" text-anchor="end" y="0">0.20</text></g><path class="domain" d="M0,0H0V370H0"></path><text class="nv-axislabel" text-anchor="middle" transform="rotate(-90)" y="-48" x="-185"></text></g><g class="nv-axisMaxMin" transform="translate(0,370)"><text style="opacity: 1; " dy=".32em" y="0" x="-10" text-anchor="end">−2.49</text></g><g class="nv-axisMaxMin" transform="translate(0,0)"><text style="opacity: 1; " dy=".32em" y="0" x="-10" text-anchor="end">0.27</text></g></g></g><g class="nv-scatterWrap"><g class="nvd3 nv-wrap nv-scatter nv-chart-78115" transform="translate(0,0)"><defs><clippath id="nv-edge-clip-78115">
+<rect width="950" height="370"></rect></clippath></defs><g clip-path=""><g class="nv-groups"><g style="stroke-opacity: 1; fill-opacity: 0.5; stroke: #1f77b4; fill: #1f77b4; " class="nv-group nv-series-0"><path transform="translate(0,25.704399509077803)" d="M0,8.72812182880188A8.72812182880188,8.72812182880188 0 1,1 0,-8.72812182880188A8.72812182880188,8.72812182880188 0 1,1 0,8.72812182880188Z" class="nv-point nv-point-0"></path><path transform="translate(0.9769243001937866,28.95583724975586)" d="M0,8.689578937266626A8.689578937266626,8.689578937266626 0 1,1 0,-8.689578937266626A8.689578937266626,8.689578937266626 0 1,1 0,8.689578937266626Z" class="nv-point nv-point-1"></path><path transform="translate(2.3005239963531494,31.847135543823242)" d="M0,8.655161012479411A8.655161012479411,8.655161012479411 0 1,1 0,-8.655161012479411A8.655161012479411,8.655161012479411 0 1,1 0,8.655161012479411Z" class="nv-point nv-point-2"></path><path transform="translate(2.458696126937866,28.106807708740234)" d="M0,8.699659900787381A8.699659900787381,8.699659900787381 0 1,1 0,-8.699659900787381A8.699659900787381,8.699659900787381 0 1,1 0,8.699659900787381Z" class="nv-point nv-point-3"></path><path transform="translate(2.9644107818603516,29.38434600830078)" d="M0,8.684486586564415A8.684486586564415,8.684486586564415 0 1,1 0,-8.684486586564415A8.684486586564415,8.684486586564415 0 1,1 0,8.684486586564415Z" class="nv-point nv-point-4"></path><path transform="translate(2.998300313949585,27.062213897705078)" d="M0,8.712046893560006A8.712046893560006,8.712046893560006 0 1,1 0,-8.712046893560006A8.712046893560006,8.712046893560006 0 1,1 0,8.712046893560006Z" class="nv-point nv-point-5"></path><path transform="translate(3.0951969623565674,32.839500427246094)" d="M0,8.643316329181028A8.643316329181028,8.643316329181028 0 1,1 0,-8.643316329181028A8.643316329181028,8.643316329181028 0 1,1 0,8.643316329181028Z" class="nv-point nv-point-6"></path><path transform="translate(3.535895586013794,33.20333480834961)" d="M0,8.638969590774968A8.638969590774968,8.638969590774968 0 1,1 0,-8.638969590774968A8.638969590774968,8.638969590774968 0 1,1 0,8.638969590774968Z" class="nv-point nv-point-7"></path><path transform="translate(3.9670238494873047,31.62311553955078)" d="M0,8.657832625426181A8.657832625426181,8.657832625426181 0 1,1 0,-8.657832625426181A8.657832625426181,8.657832625426181 0 1,1 0,8.657832625426181Z" class="nv-point nv-point-8"></path><path transform="translate(3.977436065673828,32.00704574584961)" d="M0,8.653253433754704A8.653253433754704,8.653253433754704 0 1,1 0,-8.653253433754704A8.653253433754704,8.653253433754704 0 1,1 0,8.653253433754704Z" class="nv-point nv-point-9"></path><path transform="translate(4.166717052459717,32.41463851928711)" d="M0,8.648389409583283A8.648389409583283,8.648389409583283 0 1,1 0,-8.648389409583283A8.648389409583283,8.648389409583283 0 1,1 0,8.648389409583283Z" class="nv-point nv-point-10"></path><path transform="translate(4.2413010597229,28.508872985839844)" d="M0,8.694887437800029A8.694887437800029,8.694887437800029 0 1,1 0,-8.694887437800029A8.694887437800029,8.694887437800029 0 1,1 0,8.694887437800029Z" class="nv-point nv-point-11"></path><path transform="translate(4.750436782836914,27.339746475219727)" d="M0,8.708757582550628A8.708757582550628,8.708757582550628 0 1,1 0,-8.708757582550628A8.708757582550628,8.708757582550628 0 1,1 0,8.708757582550628Z" class="nv-point nv-point-12"></path><path transform="translate(4.868817329406738,31.63357925415039)" d="M0,8.657707856548093A8.657707856548093,8.657707856548093 0 1,1 0,-8.657707856548093A8.657707856548093,8.657707856548093 0 1,1 0,8.657707856548093Z" class="nv-point nv-point-13"></path><path transform="translate(5.33164119720459,29.772422790527344)" d="M0,8.679872161158038A8.679872161158038,8.679872161158038 0 1,1 0,-8.679872161158038A8.679872161158038,8.679872161158038 0 1,1 0,8.679872161158038Z" class="nv-point nv-point-14"></path><path transform="translate(5.464507102966309,38.6542854309082)" d="M0,8.573583313790634A8.573583313790634,8.573583313790634 0 1,1 0,-8.573583313790634A8.573583313790634,8.573583313790634 0 1,1 0,8.573583313790634Z" class="nv-point nv-point-15"></path><path transform="translate(5.53026819229126,31.171783447265625)" d="M0,8.663212618412008A8.663212618412008,8.663212618412008 0 1,1 0,-8.663212618412008A8.663212618412008,8.663212618412008 0 1,1 0,8.663212618412008Z" class="nv-point nv-point-16"></path><path transform="translate(5.540673732757568,28.833555221557617)" d="M0,8.691031585535159A8.691031585535159,8.691031585535159 0 1,1 0,-8.691031585535159A8.691031585535159,8.691031585535159 0 1,1 0,8.691031585535159Z" class="nv-point nv-point-17"></path><path transform="translate(5.55136775970459,28.60279655456543)" d="M0,8.693772188123145A8.693772188123145,8.693772188123145 0 1,1 0,-8.693772188123145A8.693772188123145,8.693772188123145 0 1,1 0,8.693772188123145Z" class="nv-point nv-point-18"></path><path transform="translate(5.652629375457764,30.576908111572266)" d="M0,8.670298581120477A8.670298581120477,8.670298581120477 0 1,1 0,-8.670298581120477A8.670298581120477,8.670298581120477 0 1,1 0,8.670298581120477Z" class="nv-point nv-point-19"></path><path transform="translate(5.683749198913574,31.37088966369629)" d="M0,8.660839644088597A8.660839644088597,8.660839644088597 0 1,1 0,-8.660839644088597A8.660839644088597,8.660839644088597 0 1,1 0,8.660839644088597Z" class="nv-point nv-point-20"></path><path transform="translate(5.816311836242676,28.466764450073242)" d="M0,8.69538738152808A8.69538738152808,8.69538738152808 0 1,1 0,-8.69538738152808A8.69538738152808,8.69538738152808 0 1,1 0,8.69538738152808Z" class="nv-point nv-point-21"></path><path transform="translate(6.033835411071777,31.85987663269043)" d="M0,8.655009043490834A8.655009043490834,8.655009043490834 0 1,1 0,-8.655009043490834A8.655009043490834,8.655009043490834 0 1,1 0,8.655009043490834Z" class="nv-point nv-point-22"></path><path transform="translate(6.237795829772949,31.394554138183594)" d="M0,8.660557555190373A8.660557555190373,8.660557555190373 0 1,1 0,-8.660557555190373A8.660557555190373,8.660557555190373 0 1,1 0,8.660557555190373Z" class="nv-point nv-point-23"></path><path transform="translate(6.394533634185791,31.24677276611328)" d="M0,8.66231895257334A8.66231895257334,8.66231895257334 0 1,1 0,-8.66231895257334A8.66231895257334,8.66231895257334 0 1,1 0,8.66231895257334Z" class="nv-point nv-point-24"></path><path transform="translate(6.471161365509033,38.01883316040039)" d="M0,8.581231468662617A8.581231468662617,8.581231468662617 0 1,1 0,-8.581231468662617A8.581231468662617,8.581231468662617 0 1,1 0,8.581231468662617Z" class="nv-point nv-point-25"></path><path transform="translate(6.675470352172852,30.29767417907715)" d="M0,8.673622737917897A8.673622737917897,8.673622737917897 0 1,1 0,-8.673622737917897A8.673622737917897,8.673622737917897 0 1,1 0,8.673622737917897Z" class="nv-point nv-point-26"></path><path transform="translate(6.872482776641846,33.41599655151367)" d="M0,8.636427913171282A8.636427913171282,8.636427913171282 0 1,1 0,-8.636427913171282A8.636427913171282,8.636427913171282 0 1,1 0,8.636427913171282Z" class="nv-point nv-point-27"></path><path transform="translate(7.216760635375977,36.63849639892578)" d="M0,8.597821463845367A8.597821463845367,8.597821463845367 0 1,1 0,-8.597821463845367A8.597821463845367,8.597821463845367 0 1,1 0,8.597821463845367Z" class="nv-point nv-point-28"></path><path transform="translate(7.249683856964111,30.689943313598633)" d="M0,8.668952583237257A8.668952583237257,8.668952583237257 0 1,1 0,-8.668952583237257A8.668952583237257,8.668952583237257 0 1,1 0,8.668952583237257Z" class="nv-point nv-point-29"></path><path transform="translate(7.292160987854004,33.36265182495117)" d="M0,8.637065577046634A8.637065577046634,8.637065577046634 0 1,1 0,-8.637065577046634A8.637065577046634,8.637065577046634 0 1,1 0,8.637065577046634Z" class="nv-point nv-point-30"></path><path transform="translate(7.454160213470459,37.02980422973633)" d="M0,8.593121646806221A8.593121646806221,8.593121646806221 0 1,1 0,-8.593121646806221A8.593121646806221,8.593121646806221 0 1,1 0,8.593121646806221Z" class="nv-point nv-point-31"></path><path transform="translate(7.9853339195251465,38.60016632080078)" d="M0,8.574234967848463A8.574234967848463,8.574234967848463 0 1,1 0,-8.574234967848463A8.574234967848463,8.574234967848463 0 1,1 0,8.574234967848463Z" class="nv-point nv-point-32"></path><path transform="translate(8.07131290435791,29.50988006591797)" d="M0,8.682994199847663A8.682994199847663,8.682994199847663 0 1,1 0,-8.682994199847663A8.682994199847663,8.682994199847663 0 1,1 0,8.682994199847663Z" class="nv-point nv-point-33"></path><path transform="translate(8.531197547912598,33.70485305786133)" d="M0,8.632974391187895A8.632974391187895,8.632974391187895 0 1,1 0,-8.632974391187895A8.632974391187895,8.632974391187895 0 1,1 0,8.632974391187895Z" class="nv-point nv-point-34"></path><path transform="translate(9.282306671142578,29.102128982543945)" d="M0,8.687840752588098A8.687840752588098,8.687840752588098 0 1,1 0,-8.687840752588098A8.687840752588098,8.687840752588098 0 1,1 0,8.687840752588098Z" class="nv-point nv-point-35"></path><path transform="translate(9.581541061401367,33.5130615234375)" d="M0,8.635267568305222A8.635267568305222,8.635267568305222 0 1,1 0,-8.635267568305222A8.635267568305222,8.635267568305222 0 1,1 0,8.635267568305222Z" class="nv-point nv-point-36"></path><path transform="translate(124.1441421508789,66.8732681274414)" d="M0,8.226780767270412A8.226780767270412,8.226780767270412 0 1,1 0,-8.226780767270412A8.226780767270412,8.226780767270412 0 1,1 0,8.226780767270412Z" class="nv-point nv-point-37"></path><path transform="translate(485.2198791503906,11.143492698669434)" d="M0,8.898680779694793A8.898680779694793,8.898680779694793 0 1,1 0,-8.898680779694793A8.898680779694793,8.898680779694793 0 1,1 0,8.898680779694793Z" class="nv-point nv-point-38"></path><path transform="translate(489.6136169433594,11.92909049987793)" d="M0,8.88956221068911A8.88956221068911,8.88956221068911 0 1,1 0,-8.88956221068911A8.88956221068911,8.88956221068911 0 1,1 0,8.88956221068911Z" class="nv-point nv-point-39"></path><path transform="translate(491.39501953125,6.741792678833008)" d="M0,8.949600233592719A8.949600233592719,8.949600233592719 0 1,1 0,-8.949600233592719A8.949600233592719,8.949600233592719 0 1,1 0,8.949600233592719Z" class="nv-point nv-point-40"></path><path transform="translate(493.10205078125,11.300033569335938)" d="M0,8.89686453493271A8.89686453493271,8.89686453493271 0 1,1 0,-8.89686453493271A8.89686453493271,8.89686453493271 0 1,1 0,8.89686453493271Z" class="nv-point nv-point-41"></path><path transform="translate(494.7388916015625,10.964695930480957)" d="M0,8.900754802932314A8.900754802932314,8.900754802932314 0 1,1 0,-8.900754802932314A8.900754802932314,8.900754802932314 0 1,1 0,8.900754802932314Z" class="nv-point nv-point-42"></path><path transform="translate(496.5467834472656,16.43756866455078)" d="M0,8.837049559422823A8.837049559422823,8.837049559422823 0 1,1 0,-8.837049559422823A8.837049559422823,8.837049559422823 0 1,1 0,8.837049559422823Z" class="nv-point nv-point-43"></path><path transform="translate(498.1837158203125,6.827878475189209)" d="M0,8.948607158976793A8.948607158976793,8.948607158976793 0 1,1 0,-8.948607158976793A8.948607158976793,8.948607158976793 0 1,1 0,8.948607158976793Z" class="nv-point nv-point-44"></path><path transform="translate(500.07000732421875,12.67471694946289)" d="M0,8.880898929327579A8.880898929327579,8.880898929327579 0 1,1 0,-8.880898929327579A8.880898929327579,8.880898929327579 0 1,1 0,8.880898929327579Z" class="nv-point nv-point-45"></path><path transform="translate(500.7702941894531,12.441238403320312)" d="M0,8.883612579599792A8.883612579599792,8.883612579599792 0 1,1 0,-8.883612579599792A8.883612579599792,8.883612579599792 0 1,1 0,8.883612579599792Z" class="nv-point nv-point-46"></path><path transform="translate(500.8721923828125,13.339536666870117)" d="M0,8.873167397569421A8.873167397569421,8.873167397569421 0 1,1 0,-8.873167397569421A8.873167397569421,8.873167397569421 0 1,1 0,8.873167397569421Z" class="nv-point nv-point-47"></path><path transform="translate(501.1551513671875,10.369221687316895)" d="M0,8.907658754616008A8.907658754616008,8.907658754616008 0 1,1 0,-8.907658754616008A8.907658754616008,8.907658754616008 0 1,1 0,8.907658754616008Z" class="nv-point nv-point-48"></path><path transform="translate(501.8016662597656,4.7592549324035645)" d="M0,8.972440104162576A8.972440104162576,8.972440104162576 0 1,1 0,-8.972440104162576A8.972440104162576,8.972440104162576 0 1,1 0,8.972440104162576Z" class="nv-point nv-point-49"></path><path transform="translate(502.61773681640625,6.5445756912231445)" d="M0,8.95187488468828A8.95187488468828,8.95187488468828 0 1,1 0,-8.95187488468828A8.95187488468828,8.95187488468828 0 1,1 0,8.95187488468828Z" class="nv-point nv-point-50"></path><path transform="translate(502.7322998046875,26.380176544189453)" d="M0,8.720125125993812A8.720125125993812,8.720125125993812 0 1,1 0,-8.720125125993812A8.720125125993812,8.720125125993812 0 1,1 0,8.720125125993812Z" class="nv-point nv-point-51"></path><path transform="translate(504.3646240234375,24.269956588745117)" d="M0,8.745071857096475A8.745071857096475,8.745071857096475 0 1,1 0,-8.745071857096475A8.745071857096475,8.745071857096475 0 1,1 0,8.745071857096475Z" class="nv-point nv-point-52"></path><path transform="translate(505.7669372558594,25.000089645385742)" d="M0,8.736448377069266A8.736448377069266,8.736448377069266 0 1,1 0,-8.736448377069266A8.736448377069266,8.736448377069266 0 1,1 0,8.736448377069266Z" class="nv-point nv-point-53"></path><path transform="translate(506.6190490722656,9.641392707824707)" d="M0,8.916089961777502A8.916089961777502,8.916089961777502 0 1,1 0,-8.916089961777502A8.916089961777502,8.916089961777502 0 1,1 0,8.916089961777502Z" class="nv-point nv-point-54"></path><path transform="translate(506.9562683105469,11.700448989868164)" d="M0,8.89221706405611A8.89221706405611,8.89221706405611 0 1,1 0,-8.89221706405611A8.89221706405611,8.89221706405611 0 1,1 0,8.89221706405611Z" class="nv-point nv-point-55"></path><path transform="translate(506.98095703125,8.96226692199707)" d="M0,8.923949808487482A8.923949808487482,8.923949808487482 0 1,1 0,-8.923949808487482A8.923949808487482,8.923949808487482 0 1,1 0,8.923949808487482Z" class="nv-point nv-point-56"></path><path transform="translate(507.0306701660156,9.097047805786133)" d="M0,8.922390469654562A8.922390469654562,8.922390469654562 0 1,1 0,-8.922390469654562A8.922390469654562,8.922390469654562 0 1,1 0,8.922390469654562Z" class="nv-point nv-point-57"></path><path transform="translate(507.2090759277344,12.049497604370117)" d="M0,8.888163801175867A8.888163801175867,8.888163801175867 0 1,1 0,-8.888163801175867A8.888163801175867,8.888163801175867 0 1,1 0,8.888163801175867Z" class="nv-point nv-point-58"></path><path transform="translate(508.1443786621094,4.997838973999023)" d="M0,8.969694572257117A8.969694572257117,8.969694572257117 0 1,1 0,-8.969694572257117A8.969694572257117,8.969694572257117 0 1,1 0,8.969694572257117Z" class="nv-point nv-point-59"></path><path transform="translate(508.8993835449219,5.628878116607666)" d="M0,8.962428756040284A8.962428756040284,8.962428756040284 0 1,1 0,-8.962428756040284A8.962428756040284,8.962428756040284 0 1,1 0,8.962428756040284Z" class="nv-point nv-point-60"></path><path transform="translate(510.2268981933594,13.391341209411621)" d="M0,8.8725646535533A8.8725646535533,8.8725646535533 0 1,1 0,-8.8725646535533A8.8725646535533,8.8725646535533 0 1,1 0,8.8725646535533Z" class="nv-point nv-point-61"></path><path transform="translate(510.7638854980469,6.056686878204346)" d="M0,8.957499593248725A8.957499593248725,8.957499593248725 0 1,1 0,-8.957499593248725A8.957499593248725,8.957499593248725 0 1,1 0,8.957499593248725Z" class="nv-point nv-point-62"></path><path transform="translate(510.8887939453125,14.300766944885254)" d="M0,8.861976827613393A8.861976827613393,8.861976827613393 0 1,1 0,-8.861976827613393A8.861976827613393,8.861976827613393 0 1,1 0,8.861976827613393Z" class="nv-point nv-point-63"></path><path transform="translate(512.0049438476562,12.123886108398438)" d="M0,8.887299739731128A8.887299739731128,8.887299739731128 0 1,1 0,-8.887299739731128A8.887299739731128,8.887299739731128 0 1,1 0,8.887299739731128Z" class="nv-point nv-point-64"></path><path transform="translate(512.138427734375,22.38155746459961)" d="M0,8.767336087193966A8.767336087193966,8.767336087193966 0 1,1 0,-8.767336087193966A8.767336087193966,8.767336087193966 0 1,1 0,8.767336087193966Z" class="nv-point nv-point-65"></path><path transform="translate(512.170654296875,4.544605255126953)" d="M0,8.974909495287086A8.974909495287086,8.974909495287086 0 1,1 0,-8.974909495287086A8.974909495287086,8.974909495287086 0 1,1 0,8.974909495287086Z" class="nv-point nv-point-66"></path><path transform="translate(512.7683715820312,7.674830436706543)" d="M0,8.938830957147355A8.938830957147355,8.938830957147355 0 1,1 0,-8.938830957147355A8.938830957147355,8.938830957147355 0 1,1 0,8.938830957147355Z" class="nv-point nv-point-67"></path><path transform="translate(513.8395385742188,5.7680277824401855)" d="M0,8.96082578707113A8.96082578707113,8.96082578707113 0 1,1 0,-8.96082578707113A8.96082578707113,8.96082578707113 0 1,1 0,8.96082578707113Z" class="nv-point nv-point-68"></path><path transform="translate(515.3576049804688,8.603837013244629)" d="M0,8.928095302986975A8.928095302986975,8.928095302986975 0 1,1 0,-8.928095302986975A8.928095302986975,8.928095302986975 0 1,1 0,8.928095302986975Z" class="nv-point nv-point-69"></path><path transform="translate(515.6314697265625,15.431543350219727)" d="M0,8.84879429462877A8.84879429462877,8.84879429462877 0 1,1 0,-8.84879429462877A8.84879429462877,8.84879429462877 0 1,1 0,8.84879429462877Z" class="nv-point nv-point-70"></path><path transform="translate(515.747802734375,0)" d="M0,9.0270333367641A9.0270333367641,9.0270333367641 0 1,1 0,-9.0270333367641A9.0270333367641,9.0270333367641 0 1,1 0,9.0270333367641Z" class="nv-point nv-point-71"></path><path transform="translate(516.2813720703125,10.026308059692383)" d="M0,8.91163207060212A8.91163207060212,8.91163207060212 0 1,1 0,-8.91163207060212A8.91163207060212,8.91163207060212 0 1,1 0,8.91163207060212Z" class="nv-point nv-point-72"></path><path transform="translate(516.8292846679688,17.330026626586914)" d="M0,8.82661758437185A8.82661758437185,8.82661758437185 0 1,1 0,-8.82661758437185A8.82661758437185,8.82661758437185 0 1,1 0,8.82661758437185Z" class="nv-point nv-point-73"></path><path transform="translate(518.5350952148438,14.363699913024902)" d="M0,8.861243675680853A8.861243675680853,8.861243675680853 0 1,1 0,-8.861243675680853A8.861243675680853,8.861243675680853 0 1,1 0,8.861243675680853Z" class="nv-point nv-point-74"></path><path transform="translate(835.3675537109375,366.4930114746094)" d="M0,2.411856070998202A2.411856070998202,2.411856070998202 0 1,1 0,-2.411856070998202A2.411856070998202,2.411856070998202 0 1,1 0,2.411856070998202Z" class="nv-point nv-point-75"></path><path transform="translate(866.5408935546875,370)" d="M0,2.256758334191025A2.256758334191025,2.256758334191025 0 1,1 0,-2.256758334191025A2.256758334191025,2.256758334191025 0 1,1 0,2.256758334191025Z" class="nv-point nv-point-76"></path><path transform="translate(873.0245971679688,364.6025085449219)" d="M0,2.4914627341640494A2.4914627341640494,2.4914627341640494 0 1,1 0,-2.4914627341640494A2.4914627341640494,2.4914627341640494 0 1,1 0,2.4914627341640494Z" class="nv-point nv-point-77"></path><path transform="translate(881.4072875976562,364.48876953125)" d="M0,2.49617118540028A2.49617118540028,2.49617118540028 0 1,1 0,-2.49617118540028A2.49617118540028,2.49617118540028 0 1,1 0,2.49617118540028Z" class="nv-point nv-point-78"></path><path transform="translate(924.4163818359375,26.240379333496094)" d="M0,8.721779982839408A8.721779982839408,8.721779982839408 0 1,1 0,-8.721779982839408A8.721779982839408,8.721779982839408 0 1,1 0,8.721779982839408Z" class="nv-point nv-point-79"></path><path transform="translate(928.8598022460938,26.101150512695312)" d="M0,8.72342781257877A8.72342781257877,8.72342781257877 0 1,1 0,-8.72342781257877A8.72342781257877,8.72342781257877 0 1,1 0,8.72342781257877Z" class="nv-point nv-point-80"></path><path transform="translate(931.4180297851562,28.08303451538086)" d="M0,8.699942001572257A8.699942001572257,8.699942001572257 0 1,1 0,-8.699942001572257A8.699942001572257,8.699942001572257 0 1,1 0,8.699942001572257Z" class="nv-point nv-point-81"></path><path transform="translate(932.1726684570312,25.944644927978516)" d="M0,8.725279751803296A8.725279751803296,8.725279751803296 0 1,1 0,-8.725279751803296A8.725279751803296,8.725279751803296 0 1,1 0,8.725279751803296Z" class="nv-point nv-point-82"></path><path transform="translate(933.2723999023438,26.01013946533203)" d="M0,8.72450480423165A8.72450480423165,8.72450480423165 0 1,1 0,-8.72450480423165A8.72450480423165,8.72450480423165 0 1,1 0,8.72450480423165Z" class="nv-point nv-point-83"></path><path transform="translate(935.5305786132812,25.917240142822266)" d="M0,8.725604004132045A8.725604004132045,8.725604004132045 0 1,1 0,-8.725604004132045A8.725604004132045,8.725604004132045 0 1,1 0,8.725604004132045Z" class="nv-point nv-point-84"></path><path transform="translate(935.7171630859375,28.68623161315918)" d="M0,8.692781374987726A8.692781374987726,8.692781374987726 0 1,1 0,-8.692781374987726A8.692781374987726,8.692781374987726 0 1,1 0,8.692781374987726Z" class="nv-point nv-point-85"></path><path transform="translate(937.3025512695312,25.542591094970703)" d="M0,8.73003547416582A8.73003547416582,8.73003547416582 0 1,1 0,-8.73003547416582A8.73003547416582,8.73003547416582 0 1,1 0,8.73003547416582Z" class="nv-point nv-point-86"></path><path transform="translate(937.6328125,27.95020294189453)" d="M0,8.701518062021647A8.701518062021647,8.701518062021647 0 1,1 0,-8.701518062021647A8.701518062021647,8.701518062021647 0 1,1 0,8.701518062021647Z" class="nv-point nv-point-87"></path><path transform="translate(940.423828125,26.19158172607422)" d="M0,8.722357562758972A8.722357562758972,8.722357562758972 0 1,1 0,-8.722357562758972A8.722357562758972,8.722357562758972 0 1,1 0,8.722357562758972Z" class="nv-point nv-point-88"></path><path transform="translate(941.833740234375,42.88564682006836)" d="M0,8.522480666877806A8.522480666877806,8.522480666877806 0 1,1 0,-8.522480666877806A8.522480666877806,8.522480666877806 0 1,1 0,8.522480666877806Z" class="nv-point nv-point-89"></path><path transform="translate(942.3035888671875,26.20867919921875)" d="M0,8.722155198350412A8.722155198350412,8.722155198350412 0 1,1 0,-8.722155198350412A8.722155198350412,8.722155198350412 0 1,1 0,8.722155198350412Z" class="nv-point nv-point-90"></path><path transform="translate(944.3279418945312,29.270179748535156)" d="M0,8.685843630774558A8.685843630774558,8.685843630774558 0 1,1 0,-8.685843630774558A8.685843630774558,8.685843630774558 0 1,1 0,8.685843630774558Z" class="nv-point nv-point-91"></path><path transform="translate(946.6038818359375,21.634931564331055)" d="M0,8.776123233248738A8.776123233248738,8.776123233248738 0 1,1 0,-8.776123233248738A8.776123233248738,8.776123233248738 0 1,1 0,8.776123233248738Z" class="nv-point nv-point-92"></path><path transform="translate(947.6304931640625,49.755123138427734)" d="M0,8.438858145403808A8.438858145403808,8.438858145403808 0 1,1 0,-8.438858145403808A8.438858145403808,8.438858145403808 0 1,1 0,8.438858145403808Z" class="nv-point nv-point-93"></path><path transform="translate(950,44.069908142089844)" d="M0,8.50812322202029A8.50812322202029,8.50812322202029 0 1,1 0,-8.50812322202029A8.50812322202029,8.50812322202029 0 1,1 0,8.50812322202029Z" class="nv-point nv-point-94"></path></g><g style="stroke-opacity: 1; fill-opacity: 0.5; stroke: #ff7f0e; fill: #ff7f0e; " class="nv-group nv-series-1"><path transform="translate(32.68230056762695,93.63269805908203)" d="M0,7.883835916507465A7.883835916507465,7.883835916507465 0 1,1 0,-7.883835916507465A7.883835916507465,7.883835916507465 0 1,1 0,7.883835916507465Z" class="nv-point nv-point-0"></path></g></g><g class="nv-point-paths" clip-path="url(#nv-points-clip-78115)"><path class="nv-path-0" d="M-49581.85455327219,-1000000,-1000000,300486.62837321905,0.9500711520928284,27.191423843951664,1.291365330394603,26.842133207325805,5.351215417740866,17.877245390322773,221.5286598810979,-610.0859613065685,203.3533153526917,-1081.0799445407226Z"></path><path class="nv-path-1" d="M0.9500711520928291,27.191423843951664,-1000000,300486.62837321905,-1000000,457818.55409176945,1.712451469538347,30.36773495342656,2.0016024112272977,29.026611732445097Z"></path><path class="nv-path-2" d="M1.712451469538347,30.36773495342656,-1000000,457818.55409176945,-1000000,464839.8159019767,-7.594378703261915,40.58520325959884,3.1324771926796244,31.99528289520249,3.147528536288018,31.83744712559341,2.9964914035522465,30.713869864260932Z"></path><path class="nv-path-3" d="M1.2913653303946084,26.842133207325805,0.9500711520928284,27.191423843951664,2.0016024112272977,29.026611732445097,3.304179209480524,28.510985794898623,3.431264457867057,27.94753733611769Z"></path><path class="nv-path-4" d="M2.0016024112272985,29.026611732445097,1.7124514695383484,30.367734953426556,2.996491403552246,30.71386986426093,4.0383705782634784,30.24727342546859,4.126412729053666,29.710223768370863,3.3041792094805267,28.510985794898623Z"></path><path class="nv-path-5" d="M1.291365330394603,26.842133207325805,3.431264457867057,27.94753733611769,3.807293001944977,27.62444546589954,5.351215417740866,17.877245390322773Z"></path><path class="nv-path-6" d="M-7.594378703261915,40.58520325959884,-0.564041432527997,37.72060112754024,3.6342531834997196,32.63538217378264,3.560178162353056,32.448562691940595,3.1324771926796244,31.995282895202486Z"></path><path class="nv-path-7" d="M-0.5640414325280041,37.720601127540256,4.40391990448979,35.96287717580675,5.08134858933699,35.236994197209995,5.168931015022541,33.862855482727866,3.6342531834997196,32.63538217378264Z"></path><path class="nv-path-8" d="M2.996491403552246,30.71386986426093,3.147528536288018,31.83744712559341,4.415893558540546,31.803049206753208,4.430589759929879,30.536478112099182,4.038370578263479,30.247273425468588Z"></path><path class="nv-path-9" d="M3.147528536288018,31.83744712559341,3.1324771926796244,31.99528289520249,3.56017816235305,32.448562691940595,4.502920311223116,32.01076206856811,4.415893558540548,31.803049206753208Z"></path><path class="nv-path-10" d="M3.56017816235305,32.448562691940595,3.6342531834997143,32.63538217378264,5.16893101502254,33.862855482727866,5.415239884642435,33.197307167705866,5.266681431951643,32.697314641000546,4.502920311223116,32.01076206856811Z"></path><path class="nv-path-11" d="M3.8072930019449776,27.62444546589954,3.431264457867057,27.94753733611769,3.3041792094805267,28.510985794898623,4.126412729053666,29.710223768370863,4.770172866098766,29.154711559792084,4.8868856090961925,28.687628975893197,4.928115848202865,28.112545624508158Z"></path><path class="nv-path-12" d="M3.807293001944977,27.62444546589954,4.928115848202865,28.112545624508158,5.33467722508844,27.854735198544333,8.219956048738737,25.12598943518117,224.83818934203563,-531.8954455149119,221.52865988109787,-610.0859613065685,5.351215417740866,17.877245390322773Z"></path><path class="nv-path-13" d="M4.703112776022894,30.691622195929984,4.525918759519141,30.560184082801477,4.430589759929879,30.536478112099182,4.415893558540546,31.803049206753208,4.502920311223116,32.01076206856811,5.266681431951644,32.697314641000546,5.4151424149667,31.933009854998005,5.282491153853645,31.521492057258268Z"></path><path class="nv-path-14" d="M4.770172866098766,29.154711559792084,4.126412729053666,29.710223768370863,4.038370578263479,30.247273425468588,4.430589759929872,30.536478112099182,4.525918759519141,30.560184082801477,6.033396018808277,29.95870367270918,6.221359541738153,29.47780851559348Z"></path><path class="nv-path-15" d="M4.5491129144214355,36.08908811518018,4.40391990448979,35.96287717580675,-0.564041432527997,37.72060112754024,-7.594378703261915,40.58520325959884,-1000000,464839.8159019767,-1000000,495138.93090153276,7.439338843333244,71.9030901734259,6.745116232864625,39.56789519345405Z"></path><path class="nv-path-16" d="M4.703112776022891,30.691622195929984,5.282491153853645,31.521492057258268,5.977736811960579,30.985559189277,5.983362758127667,30.96769096541602,5.98444803674185,30.95518301322241Z"></path><path class="nv-path-17" d="M4.8868856090961925,28.687628975893194,4.770172866098767,29.15471155979208,6.221359541738156,29.477808515593477,6.496287116927683,29.26472012819484,5.783656825782115,28.72918859716433Z"></path><path class="nv-path-18" d="M5.33467722508844,27.854735198544333,4.928115848202866,28.112545624508154,4.8868856090961925,28.687628975893194,5.783656825782117,28.729188597164335Z"></path><path class="nv-path-19" d="M4.525918759519141,30.560184082801477,4.703112776022894,30.691622195929984,5.984448036741849,30.95518301322241,6.230913161756906,30.682212327322137,6.033396018808281,29.958703672709177Z"></path><path class="nv-path-20" d="M5.282491153853642,31.521492057258268,5.4151424149667005,31.933009854998,5.953738454975659,31.54740676475824,5.977736811960583,30.985559189277Z"></path><path class="nv-path-21" d="M5.334677225088438,27.85473519854433,5.783656825782115,28.729188597164327,6.496287116927683,29.26472012819484,6.904583584501692,29.073126066475247,7.8848621965509675,26.95396601916541,8.219956048738737,25.12598943518117Z"></path><path class="nv-path-22" d="M5.953738454975659,31.547406764758236,5.4151424149667005,31.933009854998,5.266681431951643,32.697314641000546,5.415239884642435,33.197307167705866,6.952594820438508,32.368773953227205,7.219862660919054,32.14498126974721,6.935817312026328,31.977872860843007Z"></path><path class="nv-path-23" d="M5.983362758127669,30.96769096541602,5.977736811960583,30.985559189277,5.953738454975659,31.54740676475824,6.935817312026327,31.977872860843007Z"></path><path class="nv-path-24" d="M6.230913161756909,30.682212327322137,5.984448036741849,30.95518301322241,5.983362758127669,30.96769096541602,6.935817312026327,31.977872860843007,7.219862660919054,32.144981269747205,7.508524201588527,32.02252118147256,6.732453042522988,30.83066996485765Z"></path><path class="nv-path-25" d="M4.5491129144214355,36.08908811518019,6.745116232864623,39.56789519345405,7.373086703316812,37.93224341506882,6.672766799217997,37.23619335988764Z"></path><path class="nv-path-26" d="M6.496287116927683,29.26472012819483,6.221359541738156,29.477808515593477,6.033396018808281,29.958703672709177,6.230913161756906,30.682212327322137,6.732453042522988,30.83066996485765,7.369890888811467,29.897574363420848,6.904583584501703,29.073126066475247Z"></path><path class="nv-path-27" d="M5.415239884642439,33.197307167705866,5.16893101502254,33.862855482727866,5.081348589336994,35.236994197209995,7.287231190865064,35.001327226455864,6.952594820438508,32.3687739532272Z"></path><path class="nv-path-28" d="M5.0813485893369945,35.236994197209995,4.40391990448979,35.96287717580675,4.5491129144214355,36.08908811518018,6.672766799217997,37.236193359887636,9.140426186096049,35.73911371518295,7.5049737219228625,35.006339028383465,7.287231190865066,35.001327226455864Z"></path><path class="nv-path-29" d="M6.732453042522982,30.83066996485765,7.508524201588527,32.02252118147256,8.332674581315128,32.00942310818305,8.733210951864754,31.839171632287243,9.371840613294193,31.311672312623415,9.337200883199264,31.267328649003698,7.369890888811467,29.897574363420848Z"></path><path class="nv-path-30" d="M7.219862660919054,32.144981269747205,6.952594820438508,32.368773953227205,7.287231190865064,35.001327226455864,7.5049737219228625,35.006339028383465,8.332674581315128,32.00942310818305,7.508524201588528,32.02252118147256Z"></path><path class="nv-path-31" d="M6.672766799217997,37.236193359887636,7.373086703316812,37.93224341506882,10.928415517716365,36.72965539997143,9.464498351298984,35.84408894599049,9.140426186096049,35.73911371518295Z"></path><path class="nv-path-32" d="M7.373086703316806,37.93224341506881,6.745116232864623,39.56789519345405,7.439338843333244,71.90309017342591,55.00137238671194,50.55865964250744,10.928415517716365,36.729655399971435Z"></path><path class="nv-path-33" d="M7.884862196550968,26.95396601916541,6.904583584501703,29.073126066475247,7.369890888811467,29.897574363420848,9.337200883199264,31.267328649003698Z"></path><path class="nv-path-34" d="M8.332674581315128,32.00942310818305,7.5049737219228625,35.006339028383465,9.140426186096049,35.73911371518295,9.464498351298984,35.844088945990485,8.733210951864773,31.839171632287243Z"></path><path class="nv-path-35" d="M8.21995604873874,25.125989435181168,7.884862196550968,26.95396601916541,9.337200883199262,31.267328649003694,9.37184061329419,31.311672312623408,73.63046324352445,26.952415104137685,228.8632967850187,-445.10983729626093,224.8381893420356,-531.8954455149119Z"></path><path class="nv-path-36" d="M9.371840613294193,31.31167231262341,8.733210951864773,31.839171632287243,9.464498351298984,35.84408894599049,10.928415517716365,36.729655399971435,55.00137238671194,50.558659642507436,68.2374078175381,45.47275892766174,73.63046324352445,26.952415104137685Z"></path><path class="nv-path-37" d="M73.63046324352445,26.952415104137685,68.2374078175381,45.47275892766174,266.4619325763162,722.9902772757011,361.6207370282618,497.1067429325779,330.5485584291932,206.5989471798395,248.01018196702677,-328.17090827791424,228.86329678501866,-445.10983729626093Z"></path><path class="nv-path-38" d="M248.01018196702677,-328.17090827791424,330.5485584291932,206.5989471798395,482.2728177521705,32.213104152887226,484.6162303196812,27.199265483645682,487.96610514175615,8.463780562679386Z"></path><path class="nv-path-39" d="M487.96610514175615,8.463780562679386,484.6162303196812,27.199265483645682,492.0944213244364,15.699271652607784,490.97606396662616,9.497444417006067Z"></path><path class="nv-path-40" d="M479.757345933856,-82.65049195379102,203.3533153526918,-1081.0799445407226,221.5286598810979,-610.0859613065685,224.83818934203563,-531.8954455149119,228.8632967850187,-445.10983729626093,248.01018196702668,-328.17090827791424,487.96610514175603,8.463780562679347,490.97606396662604,9.49744441700605,493.3995863340634,8.589851935550655,494.78033798543015,7.496516370332813,494.9145571001442,-3.087934314924448Z"></path><path class="nv-path-41" d="M490.97606396662616,9.497444417006067,492.0944213244364,15.69927165260782,494.5225458083897,14.07120657307456,493.3995863340634,8.589851935550627Z"></path><path class="nv-path-42" d="M493.3995863340634,8.589851935550655,494.5225458083897,14.07120657307456,496.93820964514344,13.27322173372417,497.90823377494957,10.249103214377282,497.8933559722773,10.088794561214343,494.78033798543015,7.496516370332813Z"></path><path class="nv-path-43" d="M494.52254580838974,14.071206573074505,492.0944213244364,15.699271652607784,484.6162303196812,27.199265483645682,482.2728177521705,32.21310415288718,499.0000469241587,21.806717865288874,501.7200216122766,19.091794393996352,498.8032877104454,15.019522476351312,496.93820964514344,13.27322173372417Z"></path><path class="nv-path-44" d="M494.9145571001442,-3.087934314924448,494.78033798543015,7.496516370332756,497.8933559722773,10.088794561214343,500.47948125379344,7.9188543108566085,500.38784887666105,6.484693587357946Z"></path><path class="nv-path-45" d="M499.9746450035628,11.221713485934202,497.90823377494957,10.249103214377282,496.93820964514344,13.273221733724085,498.8032877104454,15.019522476351312,500.54155033953197,12.92210784265736Z"></path><path class="nv-path-46" d="M499.9746450035628,11.221713485934297,500.54155033953197,12.922107842657354,503.91934791188953,12.539026277422835,503.84774022220284,11.941067159170828Z"></path><path class="nv-path-47" d="M500.541550339532,12.92210784265736,498.8032877104453,15.019522476351327,501.7200216122766,19.091794393996366,505.1216985667878,18.004903694434635,504.2861575375441,13.900575310601397,503.91934791188964,12.539026277422835Z"></path><path class="nv-path-48" d="M500.47948125379344,7.9188543108565455,497.8933559722773,10.088794561214343,497.9082337749495,10.249103214377271,499.9746450035628,11.221713485934202,503.84774022220284,11.941067159170828,504.03578895333726,11.121602828974753,503.7771453330661,9.179932933895243Z"></path><path class="nv-path-49" d="M479.757345933856,-82.65049195379102,494.91455710014407,-3.087934314924448,500.38784887666094,6.484693587357981,504.99176925015627,4.380223537395608,505.4351301222018,-7.406456220706154Z"></path><path class="nv-path-50" d="M500.38784887666105,6.484693587357946,500.47948125379344,7.918854310856602,503.7771453330661,9.179932933895243,504.59308207958037,8.12568771339984,505.5544435983689,6.390711665226211,504.99176925015627,4.380223537395608Z"></path><path class="nv-path-51" d="M499.0000469241587,21.806717865288817,482.2728177521705,32.21310415288718,330.5485584291932,206.5989471798395,361.6207370282617,497.106742932578,606.5589761780004,257.5536341008073,561.6078819220894,151.81322665932564,504.3740030221304,25.96364740913727Z"></path><path class="nv-path-52" d="M501.7200216122766,19.091794393996338,499.0000469241587,21.806717865288817,504.3740030221303,25.963647409137195,507.45491569672976,20.04642386238681,507.2026197632468,19.00782044290197,505.9728549023379,18.203020695304403,505.1216985667878,18.00490369443463Z"></path><path class="nv-path-53" d="M504.37400302213035,25.96364740913727,561.6078819220894,151.81322665932564,507.45491569672976,20.04642386238681Z"></path><path class="nv-path-54" d="M506.5823723482077,9.185845951985527,504.59308207958037,8.125687713399827,503.7771453330661,9.179932933895243,504.03578895333726,11.121602828974753,508.2331455734758,10.434186663043889Z"></path><path class="nv-path-55" d="M504.0357889533373,11.121602828974744,503.8477402222028,11.94106715917082,503.9193479118896,12.539026277422835,504.2861575375441,13.900575310601397,509.0399589744875,10.457250865530455,508.2331455734758,10.434186663043889Z"></path><path class="nv-path-56" d="M505.5544435983689,6.390711665226211,504.59308207958037,8.125687713399827,506.5823723482077,9.185845951985499,509.3702086945463,8.157569232173472,509.31653140390034,8.087684414477849,507.2142861059315,6.87781349711517Z"></path><path class="nv-path-57" d="M506.5823723482077,9.185845951985499,508.2331455734758,10.434186663043882,509.0399589744875,10.45725086553045,509.6328444722564,10.421425315979981,510.1808431729957,9.520852512339685,510.04974367473204,8.99195433344107,509.37020869454636,8.157569232173472Z"></path><path class="nv-path-58" d="M504.2861575375441,13.900575310601397,505.1216985667878,18.00490369443463,505.9728549023379,18.2030206953044,507.0976911125861,16.364468376737236,509.62896339033597,10.671640101757918,509.6328444722564,10.421425315979981,509.0399589744875,10.457250865530455Z"></path><path class="nv-path-59" d="M505.4351301222018,-7.406456220706154,504.99176925015627,4.380223537395604,505.5544435983688,6.390711665226178,507.2142861059315,6.877813497115154,510.0171690837274,3.5243397707760864,509.47928809296997,-1.253918480538628Z"></path><path class="nv-path-60" d="M507.2142861059315,6.877813497115142,509.31653140390034,8.087684414477863,510.2218803960386,4.14196207764432,510.01716908372754,3.5243397707760864Z"></path><path class="nv-path-61" d="M509.62896339033597,10.671640101757918,507.09769111258623,16.36446837673725,511.43612375782,13.206815405500022Z"></path><path class="nv-path-62" d="M510.2218803960386,4.141962077644337,509.3165314039003,8.087684414477863,509.3702086945463,8.157569232173472,510.049743674732,8.99195433344107,512.326074887275,6.172108392191139,512.3186242463272,6.092722147121208Z"></path><path class="nv-path-63" d="M507.0976911125861,16.364468376737236,505.9728549023379,18.20302069530436,507.2026197632468,19.00782044290196,512.4667474442474,18.193768288904064,513.4139800809951,14.220911117056364,511.43612375782,13.206815405500095Z"></path><path class="nv-path-64" d="M510.18084317299576,9.520852512339687,509.6328444722564,10.421425315979977,509.6289633903359,10.671640101757918,511.43612375782,13.206815405500022,513.4139800809951,14.22091111705629,514.8915494028614,12.600897351123178,513.8933662263843,10.565867062336283,513.3709043384405,10.068248997483352Z"></path><path class="nv-path-65" d="M507.2026197632468,19.00782044290197,507.45491569672976,20.04642386238681,561.6078819220894,151.81322665932564,606.5589761780004,257.5536341008073,688.0388606360833,181.01834347992292,512.9621530692809,18.442756918739065,512.4667474442475,18.193768288904053Z"></path><path class="nv-path-66" d="M509.47928809297,-1.2539184805385162,510.01716908372754,3.5243397707760864,510.2218803960386,4.14196207764432,512.3186242463272,6.092722147121208,514.6948716478327,2.8513323742705086Z"></path><path class="nv-path-67" d="M512.3260748872751,6.172108392191139,510.049743674732,8.99195433344107,510.18084317299576,9.520852512339685,513.3709043384405,10.068248997483352,514.3590668731276,7.314142035588645Z"></path><path class="nv-path-68" d="M512.3186242463271,6.092722147121159,512.326074887275,6.172108392191092,514.3590668731276,7.314142035588645,519.6397179511894,4.487264215663288,514.6948716478327,2.8513323742705268Z"></path><path class="nv-path-69" d="M514.3590668731276,7.314142035588645,513.3709043384405,10.068248997483181,513.8933662263843,10.565867062336224,523.0179465971237,4.6404666057439385,519.6397179511894,4.487264215663306Z"></path><path class="nv-path-70" d="M514.8915494028614,12.60089735112318,513.4139800809952,14.220911117056364,512.4667474442474,18.193768288904064,512.9621530692809,18.442756918739008,517.3653807496294,15.664684715231033,516.3009527599213,12.77035027014528Z"></path><path class="nv-path-71" d="M-49581.85455327219,-1000000,203.3533153526917,-1081.0799445407226,479.757345933856,-82.65049195379102,505.4351301222017,-7.406456220706154,509.47928809296997,-1.253918480538628,514.6948716478327,2.8513323742704983,519.6397179511894,4.487264215663306,523.0179465971237,4.640466605743935,532.9659117941925,4.111081642787383,723.0287433756215,-32.77096991737697,770.4477506824013,-771.2762780963866,50945.541671339626,-1000000Z"></path><path class="nv-path-72" d="M513.8933662263843,10.565867062336283,514.8915494028614,12.600897351123178,516.3009527599213,12.77035027014528,532.9659117941925,4.111081642787383,523.0179465971237,4.6404666057439385Z"></path><path class="nv-path-73" d="M512.9621530692809,18.442756918739008,688.0388606360833,181.0183434799228,717.7340355526389,153.92770056341135,718.2314160384108,131.17597584811864,517.3653807496294,15.66468471523109Z"></path><path class="nv-path-74" d="M516.3009527599213,12.77035027014523,517.3653807496294,15.664684715231017,718.2314160384109,131.17597584811864,723.0287433756215,-32.77096991737697,532.9659117941925,4.111081642787383Z"></path><path class="nv-path-75" d="M797.4570264716366,174.79232125810773,717.7340355526389,153.92770056341135,688.0388606360833,181.0183434799228,606.5589761780004,257.55363410080713,361.62073702826183,497.1067429325779,266.46193257631637,722.9902772757011,-339422.1656344075,1000000,-111607.02124395086,1000000,853.2894371246757,347.4888693423732,845.4738764489497,191.81116394335234Z"></path><path class="nv-path-76" d="M853.2894371246757,347.4888693423732,-111607.02124395086,1000000,371456.0767467296,1000000,877.3770946172392,376.42388560888446Z"></path><path class="nv-path-77" d="M845.4738764489497,191.81116394335234,853.2894371246757,347.4888693423732,877.3770946172392,376.42388560888446,874.9670173860513,198.79982642263118Z"></path><path class="nv-path-78" d="M874.9670173860513,198.79982642263118,877.3770946172393,376.42388560888446,371456.0767467296,1000000,1000000,214080.31643785283,1760.0721689035474,385.03504866637974Z"></path><path class="nv-path-79" d="M770.4477506824013,-771.2762780963866,723.0287433756216,-32.77096991737699,718.2314160384108,131.17597584811864,717.7340355526389,153.92770056341135,797.4570264716366,174.79232125810773,826.7180752787115,145.90543173147898,923.2499082586519,44.89620297690817,926.8019398917482,31.399420592735176,924.9782940869197,-26.801166718465037Z"></path><path class="nv-path-80" d="M928.7237152220562,-11.920796342353107,924.9782940869197,-26.801166718465037,926.8019398917482,31.399420592735176,930.5421626391013,26.571573626976722Z"></path><path class="nv-path-81" d="M930.5421626391013,26.571573626976715,926.8019398917482,31.399420592735176,923.2499082586519,44.89620297690817,932.1273471375125,38.649678186533194,933.5980692766615,28.167391933608656,932.6429992283386,27.31299202843752Z"></path><path class="nv-path-82" d="M928.7237152220562,-11.920796342353107,930.5421626391013,26.571573626976715,932.6429992283385,27.312992028437336,933.600517982283,11.235073731326237,932.8751972118239,1.9805579088521164Z"></path><path class="nv-path-83" d="M932.6429992283385,27.312992028437336,933.5980692766615,28.167391933608656,934.4597543564945,27.38019156966709,933.9027089039384,13.839892482054879,933.600517982283,11.235073731326237Z"></path><path class="nv-path-84" d="M933.9027089039384,13.839892482054879,934.4597543564945,27.380191569666962,936.267771265234,27.258339007826496,936.6550392479818,26.85786950474191Z"></path><path class="nv-path-85" d="M934.4597543564945,27.380191569666962,933.5980692766615,28.167391933608542,932.1273471375125,38.649678186533194,939.4350641482881,35.50180167806286,936.2677712652342,27.258339007826486Z"></path><path class="nv-path-86" d="M932.8751972118239,1.9805579088521164,933.600517982283,11.235073731326237,933.9027089039384,13.839892482054879,936.6550392479816,26.857869504741927,938.7159715922181,26.575171226729232,940.2030952348018,19.422976136958045Z"></path><path class="nv-path-87" d="M936.6550392479818,26.85786950474191,936.267771265234,27.258339007826496,939.4350641482881,35.50180167806286,939.6326093104857,35.44623802765621,940.7463066070974,29.797405772439106,938.7159715922181,26.575171226729232Z"></path><path class="nv-path-88" d="M940.2030952348018,19.422976136958045,938.7159715922181,26.575171226729232,940.7463066070974,29.797405772439106,941.3378181383547,29.04728651037996,941.4104626477545,21.060490954771755Z"></path><path class="nv-path-89" d="M939.6326093104857,35.44623802765619,939.4350641482881,35.50180167806286,932.1273471375126,38.64967818653315,923.2499082586519,44.89620297690817,826.7180752787115,145.90543173147904,945.6123488207878,45.57759042931172,946.8888153712293,36.77549482985697Z"></path><path class="nv-path-90" d="M941.4104626477545,21.060490954771755,941.3378181383547,29.04728651037996,946.3677567248021,25.72138484058246Z"></path><path class="nv-path-91" d="M941.3378181383548,29.04728651037996,940.7463066070974,29.797405772439106,939.6326093104857,35.44623802765621,946.8888153712293,36.77549482985697,962.8849182170569,30.644902224136047,946.3677567248021,25.721384840582402Z"></path><path class="nv-path-92" d="M770.4477506824013,-771.2762780963866,924.9782940869197,-26.801166718465037,928.7237152220562,-11.920796342353107,932.8751972118234,1.9805579088521164,940.2030952348018,19.422976136958045,941.4104626477541,21.06049095477158,946.3677567248021,25.721384840582402,962.8849182170569,30.644902224136047,1000000,-151199.86618836413,50945.541671339626,-1000000Z"></path><path class="nv-path-93" d="M945.6123488207878,45.57759042931161,826.7180752787115,145.90543173147898,797.4570264716366,174.79232125810773,845.4738764489496,191.81116394335234,874.9670173860504,198.7998264226312,1760.0721689035474,385.03504866637974Z"></path><path class="nv-path-94" d="M946.8888153712293,36.77549482985694,945.6123488207878,45.57759042931172,1760.0721689035474,385.03504866637974,1000000,214080.31643785283,1000000,-151199.86618836413,962.8849182170569,30.644902224135933Z"></path><path class="nv-path-95" d="M7.439338843333244,71.9030901734259,-1000000,495138.93090153276,-339422.1656344075,1000000,266.4619325763162,722.9902772757011,68.2374078175381,45.47275892766173,55.00137238671194,50.55865964250744Z"></path></g></g></g></g><g class="nv-distWrap"><g class="nv-distributionX" transform="translate(0,370)"><g class="nvd3 nv-distribution" transform="translate(0,0)"><g><g class="nv-dist nv-series-0" style="stroke: #1f77b4; "><line x1="0" x2="0" class="nv-distx nv-distx-0" y1="0" y2="8"></line><line x1="0.9769242935403352" x2="0.9769242935403352" class="nv-distx nv-distx-1" y1="0" y2="8"></line><line x1="2.3005240131550693" x2="2.3005240131550693" class="nv-distx nv-distx-2" y1="0" y2="8"></line><line x1="2.458696066856004" x2="2.458696066856004" class="nv-distx nv-distx-3" y1="0" y2="8"></line><line x1="2.964410789255214" x2="2.964410789255214" class="nv-distx nv-distx-4" y1="0" y2="8"></line><line x1="2.99830032133779" x2="2.99830032133779" class="nv-distx nv-distx-5" y1="0" y2="8"></line><line x1="3.0951968646504553" x2="3.0951968646504553" class="nv-distx nv-distx-6" y1="0" y2="8"></line><line x1="3.5358955859322183" x2="3.5358955859322183" class="nv-distx nv-distx-7" y1="0" y2="8"></line><line x1="3.967023840200438" x2="3.967023840200438" class="nv-distx nv-distx-8" y1="0" y2="8"></line><line x1="3.9774360138655562" x2="3.9774360138655562" class="nv-distx nv-distx-9" y1="0" y2="8"></line><line x1="4.16671694924482" x2="4.16671694924482" class="nv-distx nv-distx-10" y1="0" y2="8"></line><line x1="4.241301019013222" x2="4.241301019013222" class="nv-distx nv-distx-11" y1="0" y2="8"></line><line x1="4.750436705681241" x2="4.750436705681241" class="nv-distx nv-distx-12" y1="0" y2="8"></line><line x1="4.868817453603514" x2="4.868817453603514" class="nv-distx nv-distx-13" y1="0" y2="8"></line><line x1="5.331641219288437" x2="5.331641219288437" class="nv-distx nv-distx-14" y1="0" y2="8"></line><line x1="5.464506927720735" x2="5.464506927720735" class="nv-distx nv-distx-15" y1="0" y2="8"></line><line x1="5.530268286863172" x2="5.530268286863172" class="nv-distx nv-distx-16" y1="0" y2="8"></line><line x1="5.540673878927124" x2="5.540673878927124" class="nv-distx nv-distx-17" y1="0" y2="8"></line><line x1="5.551368025503537" x2="5.551368025503537" class="nv-distx nv-distx-18" y1="0" y2="8"></line><line x1="5.652629516019793" x2="5.652629516019793" class="nv-distx nv-distx-19" y1="0" y2="8"></line><line x1="5.68374941630638" x2="5.68374941630638" class="nv-distx nv-distx-20" y1="0" y2="8"></line><line x1="5.816311691416764" x2="5.816311691416764" class="nv-distx nv-distx-21" y1="0" y2="8"></line><line x1="6.033835445415358" x2="6.033835445415358" class="nv-distx nv-distx-22" y1="0" y2="8"></line><line x1="6.237795987991871" x2="6.237795987991871" class="nv-distx nv-distx-23" y1="0" y2="8"></line><line x1="6.394533529129305" x2="6.394533529129305" class="nv-distx nv-distx-24" y1="0" y2="8"></line><line x1="6.471161371705317" x2="6.471161371705317" class="nv-distx nv-distx-25" y1="0" y2="8"></line><line x1="6.675470417048507" x2="6.675470417048507" class="nv-distx nv-distx-26" y1="0" y2="8"></line><line x1="6.872482732896606" x2="6.872482732896606" class="nv-distx nv-distx-27" y1="0" y2="8"></line><line x1="7.2167604488183175" x2="7.2167604488183175" class="nv-distx nv-distx-28" y1="0" y2="8"></line><line x1="7.249684059748115" x2="7.249684059748115" class="nv-distx nv-distx-29" y1="0" y2="8"></line><line x1="7.292160900610141" x2="7.292160900610141" class="nv-distx nv-distx-30" y1="0" y2="8"></line><line x1="7.45416044170078" x2="7.45416044170078" class="nv-distx nv-distx-31" y1="0" y2="8"></line><line x1="7.9853340401789525" x2="7.9853340401789525" class="nv-distx nv-distx-32" y1="0" y2="8"></line><line x1="8.07131264938309" x2="8.07131264938309" class="nv-distx nv-distx-33" y1="0" y2="8"></line><line x1="8.531197285778802" x2="8.531197285778802" class="nv-distx nv-distx-34" y1="0" y2="8"></line><line x1="9.282306833446532" x2="9.282306833446532" class="nv-distx nv-distx-35" y1="0" y2="8"></line><line x1="9.581541248590916" x2="9.581541248590916" class="nv-distx nv-distx-36" y1="0" y2="8"></line><line x1="124.14414468751514" x2="124.14414468751514" class="nv-distx nv-distx-37" y1="0" y2="8"></line><line x1="485.2198643952899" x2="485.2198643952899" class="nv-distx nv-distx-38" y1="0" y2="8"></line><line x1="489.6136256719809" x2="489.6136256719809" class="nv-distx nv-distx-39" y1="0" y2="8"></line><line x1="491.3950196205539" x2="491.3950196205539" class="nv-distx nv-distx-40" y1="0" y2="8"></line><line x1="493.1020494695715" x2="493.1020494695715" class="nv-distx nv-distx-41" y1="0" y2="8"></line><line x1="494.73888712447774" x2="494.73888712447774" class="nv-distx nv-distx-42" y1="0" y2="8"></line><line x1="496.5467835178398" x2="496.5467835178398" class="nv-distx nv-distx-43" y1="0" y2="8"></line><line x1="498.18370569063495" x2="498.18370569063495" class="nv-distx nv-distx-44" y1="0" y2="8"></line><line x1="500.0699987189825" x2="500.0699987189825" class="nv-distx nv-distx-45" y1="0" y2="8"></line><line x1="500.7703027260632" x2="500.7703027260632" class="nv-distx nv-distx-46" y1="0" y2="8"></line><line x1="500.87218021094435" x2="500.87218021094435" class="nv-distx nv-distx-47" y1="0" y2="8"></line><line x1="501.1551404464191" x2="501.1551404464191" class="nv-distx nv-distx-48" y1="0" y2="8"></line><line x1="501.80166794412116" x2="501.80166794412116" class="nv-distx nv-distx-49" y1="0" y2="8"></line><line x1="502.61774509204326" x2="502.61774509204326" class="nv-distx nv-distx-50" y1="0" y2="8"></line><line x1="502.7323032314349" x2="502.7323032314349" class="nv-distx nv-distx-51" y1="0" y2="8"></line><line x1="504.3646260007061" x2="504.3646260007061" class="nv-distx nv-distx-52" y1="0" y2="8"></line><line x1="505.7669252513197" x2="505.7669252513197" class="nv-distx nv-distx-53" y1="0" y2="8"></line><line x1="506.61904108077186" x2="506.61904108077186" class="nv-distx nv-distx-54" y1="0" y2="8"></line><line x1="506.9562600516777" x2="506.9562600516777" class="nv-distx nv-distx-55" y1="0" y2="8"></line><line x1="506.98096958166605" x2="506.98096958166605" class="nv-distx nv-distx-56" y1="0" y2="8"></line><line x1="507.03068289907384" x2="507.03068289907384" class="nv-distx nv-distx-57" y1="0" y2="8"></line><line x1="507.20908684381504" x2="507.20908684381504" class="nv-distx nv-distx-58" y1="0" y2="8"></line><line x1="508.14438128026603" x2="508.14438128026603" class="nv-distx nv-distx-59" y1="0" y2="8"></line><line x1="508.8993803609743" x2="508.8993803609743" class="nv-distx nv-distx-60" y1="0" y2="8"></line><line x1="510.22689215167225" x2="510.22689215167225" class="nv-distx nv-distx-61" y1="0" y2="8"></line><line x1="510.76387132667725" x2="510.76387132667725" class="nv-distx nv-distx-62" y1="0" y2="8"></line><line x1="510.8888017094598" x2="510.8888017094598" class="nv-distx nv-distx-63" y1="0" y2="8"></line><line x1="512.0049422051507" x2="512.0049422051507" class="nv-distx nv-distx-64" y1="0" y2="8"></line><line x1="512.1384266547005" x2="512.1384266547005" class="nv-distx nv-distx-65" y1="0" y2="8"></line><line x1="512.1706759914867" x2="512.1706759914867" class="nv-distx nv-distx-66" y1="0" y2="8"></line><line x1="512.7683750464244" x2="512.7683750464244" class="nv-distx nv-distx-67" y1="0" y2="8"></line><line x1="513.8395216062369" x2="513.8395216062369" class="nv-distx nv-distx-68" y1="0" y2="8"></line><line x1="515.3576080360664" x2="515.3576080360664" class="nv-distx nv-distx-69" y1="0" y2="8"></line><line x1="515.6314726288853" x2="515.6314726288853" class="nv-distx nv-distx-70" y1="0" y2="8"></line><line x1="515.747791312697" x2="515.747791312697" class="nv-distx nv-distx-71" y1="0" y2="8"></line><line x1="516.2813453402263" x2="516.2813453402263" class="nv-distx nv-distx-72" y1="0" y2="8"></line><line x1="516.8292591091442" x2="516.8292591091442" class="nv-distx nv-distx-73" y1="0" y2="8"></line><line x1="518.5350943363321" x2="518.5350943363321" class="nv-distx nv-distx-74" y1="0" y2="8"></line><line x1="835.3675355872874" x2="835.3675355872874" class="nv-distx nv-distx-75" y1="0" y2="8"></line><line x1="866.5408947819462" x2="866.5408947819462" class="nv-distx nv-distx-76" y1="0" y2="8"></line><line x1="873.0245764013721" x2="873.0245764013721" class="nv-distx nv-distx-77" y1="0" y2="8"></line><line x1="881.4072746375922" x2="881.4072746375922" class="nv-distx nv-distx-78" y1="0" y2="8"></line><line x1="924.416404693125" x2="924.416404693125" class="nv-distx nv-distx-79" y1="0" y2="8"></line><line x1="928.8598077933033" x2="928.8598077933033" class="nv-distx nv-distx-80" y1="0" y2="8"></line><line x1="931.418005466423" x2="931.418005466423" class="nv-distx nv-distx-81" y1="0" y2="8"></line><line x1="932.1726767197857" x2="932.1726767197857" class="nv-distx nv-distx-82" y1="0" y2="8"></line><line x1="933.2724046991997" x2="933.2724046991997" class="nv-distx nv-distx-83" y1="0" y2="8"></line><line x1="935.5305547614845" x2="935.5305547614845" class="nv-distx nv-distx-84" y1="0" y2="8"></line><line x1="935.7171728733581" x2="935.7171728733581" class="nv-distx nv-distx-85" y1="0" y2="8"></line><line x1="937.3025676568294" x2="937.3025676568294" class="nv-distx nv-distx-86" y1="0" y2="8"></line><line x1="937.632820061428" x2="937.632820061428" class="nv-distx nv-distx-87" y1="0" y2="8"></line><line x1="940.4238331463121" x2="940.4238331463121" class="nv-distx nv-distx-88" y1="0" y2="8"></line><line x1="941.8337212087988" x2="941.8337212087988" class="nv-distx nv-distx-89" y1="0" y2="8"></line><line x1="942.3035961733173" x2="942.3035961733173" class="nv-distx nv-distx-90" y1="0" y2="8"></line><line x1="944.3279243699117" x2="944.3279243699117" class="nv-distx nv-distx-91" y1="0" y2="8"></line><line x1="946.6038769725862" x2="946.6038769725862" class="nv-distx nv-distx-92" y1="0" y2="8"></line><line x1="947.6304672425798" x2="947.6304672425798" class="nv-distx nv-distx-93" y1="0" y2="8"></line><line x1="950" x2="950" class="nv-distx nv-distx-94" y1="0" y2="8"></line></g><g class="nv-dist nv-series-1" style="stroke: #ff7f0e; "><line x1="32.68230135358069" x2="32.68230135358069" class="nv-distx nv-distx-0" y1="0" y2="8"></line></g></g></g></g><g class="nv-distributionY" transform="translate(-8,0)"><g class="nvd3 nv-distribution" transform="translate(0,0)"><g><g class="nv-dist nv-series-0" style="stroke: #1f77b4; "><line y1="25.704399509077803" y2="25.704399509077803" class="nv-disty nv-disty-0" x1="0" x2="8"></line><line y1="28.95583747889441" y2="28.95583747889441" class="nv-disty nv-disty-1" x1="0" x2="8"></line><line y1="31.847135301047842" y2="31.847135301047842" class="nv-disty nv-disty-2" x1="0" x2="8"></line><line y1="28.106807606643883" y2="28.106807606643883" class="nv-disty nv-disty-3" x1="0" x2="8"></line><line y1="29.384346644097835" y2="29.384346644097835" class="nv-disty nv-disty-4" x1="0" x2="8"></line><line y1="27.06221346838703" y2="27.06221346838703" class="nv-disty nv-disty-5" x1="0" x2="8"></line><line y1="32.839500864494255" y2="32.839500864494255" class="nv-disty nv-disty-6" x1="0" x2="8"></line><line y1="33.20333634250068" y2="33.20333634250068" class="nv-disty nv-disty-7" x1="0" x2="8"></line><line y1="31.623115677084005" y2="31.623115677084005" class="nv-disty nv-disty-8" x1="0" x2="8"></line><line y1="32.00704695341835" y2="32.00704695341835" class="nv-disty nv-disty-9" x1="0" x2="8"></line><line y1="32.41463686134284" y2="32.41463686134284" class="nv-disty nv-disty-10" x1="0" x2="8"></line><line y1="28.508872408830545" y2="28.508872408830545" class="nv-disty nv-disty-11" x1="0" x2="8"></line><line y1="27.339745746205438" y2="27.339745746205438" class="nv-disty nv-disty-12" x1="0" x2="8"></line><line y1="31.63357931437696" y2="31.63357931437696" class="nv-disty nv-disty-13" x1="0" x2="8"></line><line y1="29.772422598930575" y2="29.772422598930575" class="nv-disty nv-disty-14" x1="0" x2="8"></line><line y1="38.65428702832304" y2="38.65428702832304" class="nv-disty nv-disty-15" x1="0" x2="8"></line><line y1="31.171783641770276" y2="31.171783641770276" class="nv-disty nv-disty-16" x1="0" x2="8"></line><line y1="28.83355454402482" y2="28.83355454402482" class="nv-disty nv-disty-17" x1="0" x2="8"></line><line y1="28.602796838716188" y2="28.602796838716188" class="nv-disty nv-disty-18" x1="0" x2="8"></line><line y1="30.57690858002178" y2="30.57690858002178" class="nv-disty nv-disty-19" x1="0" x2="8"></line><line y1="31.370888968618544" y2="31.370888968618544" class="nv-disty nv-disty-20" x1="0" x2="8"></line><line y1="28.46676408786101" y2="28.46676408786101" class="nv-disty nv-disty-21" x1="0" x2="8"></line><line y1="31.859876099995915" y2="31.859876099995915" class="nv-disty nv-disty-22" x1="0" x2="8"></line><line y1="31.394554119094835" y2="31.394554119094835" class="nv-disty nv-disty-23" x1="0" x2="8"></line><line y1="31.246773421885788" y2="31.246773421885788" class="nv-disty nv-disty-24" x1="0" x2="8"></line><line y1="38.01883457300153" y2="38.01883457300153" class="nv-disty nv-disty-25" x1="0" x2="8"></line><line y1="30.297674031576037" y2="30.297674031576037" class="nv-disty nv-disty-26" x1="0" x2="8"></line><line y1="33.41599783932958" y2="33.41599783932958" class="nv-disty nv-disty-27" x1="0" x2="8"></line><line y1="36.63849533738767" y2="36.63849533738767" class="nv-disty nv-disty-28" x1="0" x2="8"></line><line y1="30.68994413462127" y2="30.68994413462127" class="nv-disty nv-disty-29" x1="0" x2="8"></line><line y1="33.362650550874264" y2="33.362650550874264" class="nv-disty nv-disty-30" x1="0" x2="8"></line><line y1="37.02980539425903" y2="37.02980539425903" class="nv-disty nv-disty-31" x1="0" x2="8"></line><line y1="38.6001659636396" y2="38.6001659636396" class="nv-disty nv-disty-32" x1="0" x2="8"></line><line y1="29.509879831763556" y2="29.509879831763556" class="nv-disty nv-disty-33" x1="0" x2="8"></line><line y1="33.70485283753112" y2="33.70485283753112" class="nv-disty nv-disty-34" x1="0" x2="8"></line><line y1="29.102129810783765" y2="29.102129810783765" class="nv-disty nv-disty-35" x1="0" x2="8"></line><line y1="33.513062784247666" y2="33.513062784247666" class="nv-disty nv-disty-36" x1="0" x2="8"></line><line y1="66.87326797149103" y2="66.87326797149103" class="nv-disty nv-disty-37" x1="0" x2="8"></line><line y1="11.143493040413432" y2="11.143493040413432" class="nv-disty nv-disty-38" x1="0" x2="8"></line><line y1="11.9290905489014" y2="11.9290905489014" class="nv-disty nv-disty-39" x1="0" x2="8"></line><line y1="6.741792556408086" y2="6.741792556408086" class="nv-disty nv-disty-40" x1="0" x2="8"></line><line y1="11.300033293147806" y2="11.300033293147806" class="nv-disty nv-disty-41" x1="0" x2="8"></line><line y1="10.964696050073087" y2="10.964696050073087" class="nv-disty nv-disty-42" x1="0" x2="8"></line><line y1="16.43756937063847" y2="16.43756937063847" class="nv-disty nv-disty-43" x1="0" x2="8"></line><line y1="6.827878406436412" y2="6.827878406436412" class="nv-disty nv-disty-44" x1="0" x2="8"></line><line y1="12.674717285103327" y2="12.674717285103327" class="nv-disty nv-disty-45" x1="0" x2="8"></line><line y1="12.441238459041585" y2="12.441238459041585" class="nv-disty nv-disty-46" x1="0" x2="8"></line><line y1="13.33953676647883" y2="13.33953676647883" class="nv-disty nv-disty-47" x1="0" x2="8"></line><line y1="10.369221327203206" y2="10.369221327203206" class="nv-disty nv-disty-48" x1="0" x2="8"></line><line y1="4.759254904829561" y2="4.759254904829561" class="nv-disty nv-disty-49" x1="0" x2="8"></line><line y1="6.544575730522411" y2="6.544575730522411" class="nv-disty nv-disty-50" x1="0" x2="8"></line><line y1="26.3801760485174" y2="26.3801760485174" class="nv-disty nv-disty-51" x1="0" x2="8"></line><line y1="24.269957242222574" y2="24.269957242222574" class="nv-disty nv-disty-52" x1="0" x2="8"></line><line y1="25.00009047136672" y2="25.00009047136672" class="nv-disty nv-disty-53" x1="0" x2="8"></line><line y1="9.641392645054509" y2="9.641392645054509" class="nv-disty nv-disty-54" x1="0" x2="8"></line><line y1="11.70044849686974" y2="11.70044849686974" class="nv-disty nv-disty-55" x1="0" x2="8"></line><line y1="8.962266814210977" y2="8.962266814210977" class="nv-disty nv-disty-56" x1="0" x2="8"></line><line y1="9.09704823153362" y2="9.09704823153362" class="nv-disty nv-disty-57" x1="0" x2="8"></line><line y1="12.049497326429275" y2="12.049497326429275" class="nv-disty nv-disty-58" x1="0" x2="8"></line><line y1="4.997838710755218" y2="4.997838710755218" class="nv-disty nv-disty-59" x1="0" x2="8"></line><line y1="5.6288781175096565" y2="5.6288781175096565" class="nv-disty nv-disty-60" x1="0" x2="8"></line><line y1="13.391341230197668" y2="13.391341230197668" class="nv-disty nv-disty-61" x1="0" x2="8"></line><line y1="6.056686988097965" y2="6.056686988097965" class="nv-disty nv-disty-62" x1="0" x2="8"></line><line y1="14.300766698852726" y2="14.300766698852726" class="nv-disty nv-disty-63" x1="0" x2="8"></line><line y1="12.123885846189637" y2="12.123885846189637" class="nv-disty nv-disty-64" x1="0" x2="8"></line><line y1="22.381557631839314" y2="22.381557631839314" class="nv-disty nv-disty-65" x1="0" x2="8"></line><line y1="4.544605069071736" y2="4.544605069071736" class="nv-disty nv-disty-66" x1="0" x2="8"></line><line y1="7.674830134208606" y2="7.674830134208606" class="nv-disty nv-disty-67" x1="0" x2="8"></line><line y1="5.7680278394628886" y2="5.7680278394628886" class="nv-disty nv-disty-68" x1="0" x2="8"></line><line y1="8.60383654874471" y2="8.60383654874471" class="nv-disty nv-disty-69" x1="0" x2="8"></line><line y1="15.431542985516842" y2="15.431542985516842" class="nv-disty nv-disty-70" x1="0" x2="8"></line><line y1="0" y2="0" class="nv-disty nv-disty-71" x1="0" x2="8"></line><line y1="10.026308385772097" y2="10.026308385772097" class="nv-disty nv-disty-72" x1="0" x2="8"></line><line y1="17.33002732974029" y2="17.33002732974029" class="nv-disty nv-disty-73" x1="0" x2="8"></line><line y1="14.363699487948622" y2="14.363699487948622" class="nv-disty nv-disty-74" x1="0" x2="8"></line><line y1="366.4930157019836" y2="366.4930157019836" class="nv-disty nv-disty-75" x1="0" x2="8"></line><line y1="370" y2="370" class="nv-disty nv-disty-76" x1="0" x2="8"></line><line y1="364.60250166440386" y2="364.60250166440386" class="nv-disty nv-disty-77" x1="0" x2="8"></line><line y1="364.4887617225776" y2="364.4887617225776" class="nv-disty nv-disty-78" x1="0" x2="8"></line><line y1="26.240380061319513" y2="26.240380061319513" class="nv-disty nv-disty-79" x1="0" x2="8"></line><line y1="26.101151338761667" y2="26.101151338761667" class="nv-disty nv-disty-80" x1="0" x2="8"></line><line y1="28.083034608229696" y2="28.083034608229696" class="nv-disty nv-disty-81" x1="0" x2="8"></line><line y1="25.944645570292778" y2="25.944645570292778" class="nv-disty nv-disty-82" x1="0" x2="8"></line><line y1="26.010139755874206" y2="26.010139755874206" class="nv-disty nv-disty-83" x1="0" x2="8"></line><line y1="25.917239871231573" y2="25.917239871231573" class="nv-disty nv-disty-84" x1="0" x2="8"></line><line y1="28.686231328280712" y2="28.686231328280712" class="nv-disty nv-disty-85" x1="0" x2="8"></line><line y1="25.542591425230512" y2="25.542591425230512" class="nv-disty nv-disty-86" x1="0" x2="8"></line><line y1="27.95020376949674" y2="27.95020376949674" class="nv-disty nv-disty-87" x1="0" x2="8"></line><line y1="26.191582070232016" y2="26.191582070232016" class="nv-disty nv-disty-88" x1="0" x2="8"></line><line y1="42.88564613878833" y2="42.88564613878833" class="nv-disty nv-disty-89" x1="0" x2="8"></line><line y1="26.20867959851705" y2="26.20867959851705" class="nv-disty nv-disty-90" x1="0" x2="8"></line><line y1="29.27017916118035" y2="29.27017916118035" class="nv-disty nv-disty-91" x1="0" x2="8"></line><line y1="21.63493107340065" y2="21.63493107340065" class="nv-disty nv-disty-92" x1="0" x2="8"></line><line y1="49.75512423793276" y2="49.75512423793276" class="nv-disty nv-disty-93" x1="0" x2="8"></line><line y1="44.06990750025488" y2="44.06990750025488" class="nv-disty nv-disty-94" x1="0" x2="8"></line></g><g class="nv-dist nv-series-1" style="stroke: #ff7f0e; "><line y1="93.6326947574197" y2="93.6326947574197" class="nv-disty nv-disty-0" x1="0" x2="8"></line></g></g></g></g></g><g class="nv-legendWrap" transform="translate(475,-30)"><g class="nvd3 nv-legend"><g transform="translate(309.90909576416016,5)"><g class="nv-series" transform="translate(0,5)"><circle style="fill: #1f77b4; stroke: #1f77b4; stroke-width: 2px; " r="5"></circle><text text-anchor="start" dy=".32em" dx="8">Good Calls</text></g><g class="nv-series" transform="translate(86.18181610107422,5)"><circle style="fill: #ff7f0e; stroke: #ff7f0e; stroke-width: 2px; " r="5"></circle><text text-anchor="start" dy=".32em" dx="8">Bad Calls</text></g></g></g></g><g class="nv-controlsWrap" transform="translate(0,-30)"><g class="nvd3 nv-legend"><g transform="translate(110.18181991577148,5)"><g class="nv-series disabled" transform="translate(0,5)"><circle style="fill: #444444; stroke: #444444; stroke-width: 2px; " r="5"></circle><text text-anchor="start" dy=".32em" dx="8">Magnify</text></g></g></g></g><g class="nv-shapesWrap" transform="translate(88,-30)"><g transform="translate(176,10)"></g></g></g></g>
+</svg>
