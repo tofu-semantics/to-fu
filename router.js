@@ -7,6 +7,8 @@ var urls = [
      handler: requestHandlers.displayResult},
     {url: /^\/g\/[a-zA-Z0-9_-]{4}\.[a-zA-Z0-9]*$/,
      handler: requestHandlers.showBase64},
+    {url: /^\/t\/[a-zA-Z0-9_-]*.htm$/,
+     handler: requestHandlers.template},
     {url: /^\/favicon.ico$/,
      handler: requestHandlers.ignore},
     {url: /^\/$/,

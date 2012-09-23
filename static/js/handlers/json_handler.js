@@ -1,5 +1,4 @@
 var json_handler = function (data, uid, name, ext) {
-
     newdiv = createNewCarouselItem(uid);
 
     newchart = document.createElement("div");
@@ -10,6 +9,7 @@ var json_handler = function (data, uid, name, ext) {
     newcontroldiv.setAttribute("id", "control"+uid);
     //newcontroldiv.setAttribute("class", "row");
     
+    console.debug([uid, name])
     newcaption = createNewCaptionBar(uid, name, "JSON-")
 
     // Can't use createElement then appendChild because of strange capitalization bug
@@ -17,8 +17,9 @@ var json_handler = function (data, uid, name, ext) {
     newcontrol = newdiv.appendChild(newcontroldiv)
     newcaption = newdiv.appendChild(newcaption)
     
-    data_store[uid] = $.parseJSON(data)
+    grapher.data_store[uid] = $.parseJSON(data)
 
     // Handler for plotting scatter-plots found in graph_handler.js
+    console.debug([uid, name])
     graph_handler(uid, name)
 }

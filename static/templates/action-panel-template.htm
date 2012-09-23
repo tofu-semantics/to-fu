@@ -1,0 +1,17 @@
+    <span class="action-panel" id="ap-{{uid}}">
+        {{#dropbtns}}
+        <span class="dropdown">
+        <a id="{{type}}-{{../uid}}" role="button" href="#" class="dropdown-toggle action-panel-button" data-toggle="dropdown"><i class="{{icon}} icon-white"></i>{{text}}</a>
+        <ul class="dropdown-menu bottom-up pull-right" aria-labelledby="{{type}}-{{../uid}}" role="menu">
+            <li style="text-align:left">
+            {{#subbtns}}
+            <a onclick="grapher.actionpanel.handler('{{../../uid}}','{{../action}}','{{value}}');return false;" href="#" id="{{../type}}-{{type}}-{{../../uid}}" class="action-panel-button" action="{{../action}}" value="{{value}}"><i class="{{icon}} icon-white"></i>{{text}}</a>
+            {{/subbtns}}
+            </li>
+        </ul>
+        </span>
+        {{/dropbtns}}
+        {{#mbtns}}
+        <a onclick="grapher.actionpanel.handler('{{../uid}}','{{action}}','{{value}}');return false;" href="#" id="{{type}}-{{../uid}}" role="button" class="action-panel-button" action="{{action}}" value="{{value}}"><i class="{{icon}} icon-white"></i>{{text}}</a>
+        {{/mbtns}}
+    </span>

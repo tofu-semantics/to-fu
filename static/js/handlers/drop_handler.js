@@ -21,19 +21,11 @@
       var proc = {}, read = {};
       proc[ext] = hdl
       read[ext] = rdm
-      $.extend(process, proc)
-      $.extend(readmode, read)
-      //this.filedrop({process: proc, readmode: read}, true)
+      $.extend(grapher.process, proc)
+      $.extend(grapher.readmode, read)
   }
 
   $.fn.filedrop = function(options, isupdate) {
-    //if (options != undefined){
-    //    if (options.hasOwnProperty('process'))
-    //        options.process = $.extend(default_opts.process, options.process);
-    //    if (options.hasOwnProperty('readmode'))
-    //        options.readmode = $.extend(default_opts.readmode, options.readmode);
-    //}
-
     var opts = $.extend({}, default_opts, options);
 
     this.unbind('drop')
@@ -93,14 +85,14 @@
                 reader.index = fileIndex;
                 reader.onloadend = function(e){
                     console.debug(opts)
-                    var uid = 'A' + gindex + Math.floor(Math.random()*10) + Math.floor(Math.random()*10)
-                    process[ext](e.target.result, uid, name, ext)
+                    var uid = 'A' + grapher.gindex + Math.floor(Math.random()*10) + Math.floor(Math.random()*10)
+                    grapher.process[ext](e.target.result, uid, name, ext)
                     send(e, uid, ext)
                     processingQueue.forEach(function(value, key) {
                       if (value === fileIndex) processingQueue.splice(key, 1);
                     });
                 }
-                switch (readmode[ext]){
+                switch (grapher.readmode[ext]){
                     case 'b':
                         reader.readAsBinaryString(files[fileIndex]);
                         break;
@@ -270,9 +262,6 @@ var createNewActionPanel = function (uid){
                         ]}
     newpanel = document.createElement("span");
     newpanel.style.cssFloat =  "right"
-    var source = $('#action-panel-template').html()
-    var template = Handlebars.compile(source)
-    console.debug(template(panelData))
-    $(newpanel).html(template(panelData))
+    render_template_from_server('action-panel-template', panelData, newpanel, '')
     return newpanel
 }

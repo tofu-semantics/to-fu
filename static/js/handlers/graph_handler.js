@@ -1,5 +1,5 @@
-var make_controls = function (uid, labels, types){
-    data = data_store[uid]
+var make_controls = function (uid, labels, callback){
+    data = grapher.data_store[uid]
     label_1 = []
     label_2 = []
     fields = []
@@ -13,39 +13,96 @@ var make_controls = function (uid, labels, types){
     for (var k in data[0]){
         fields.push(k)
     }
-    var source = $('#control-template').html()
-    var template = Handlebars.compile(source)
     data = {uid: uid, label_1: label_1, label_2: label_2, fields: fields}
-    $("#control"+uid).append(template(data))
+    render_template_from_server('control-template', data, "#control"+uid, callback, 'append')
 }
 
 var colors = d3.scale.category10();
-//var shapes = ['diamond', 'circle', 'triangle-up', 'square', 'cross', 'triangle-down'],
-//    shape_map = {_lastkey: 0}
 
+var graph_setup = function(uid, name, graphmode, graph_render){
+    labels = []
+    for (i = 0; i < grapher.graph_fields[graphmode].length; i++){
+        labels.push(grapher.field_structs[grapher.graph_fields[graphmode][i]].name)
+    }
+    make_controls(uid, labels, function(){
+        $(".select" + uid).change(function () {
+            $('#chart' + uid).html("<svg></svg>")
+            nv.addGraph(graph_render)
+        })
+        $('#chart' + uid).html("<svg></svg>")
+        $('#myCarousel').carousel($(".carousel-inner").children().index($('#item'+uid)))
+        nv.addGraph(graph_render)
+    })
+}
+
+var scatter_render_factory = function(uid) {
+    return function(){
+        var chart = nv.models.scatterChart()
+
+        chart.xAxis.tickFormat(d3.format('.02f'))
+        chart.yAxis.tickFormat(d3.format('.02f'))
+        
+        d3.select('#chart' + uid + ' svg')
+            .datum(scatter_dataLoader(uid))
+            .transition().duration(300)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+        return chart;
+    }
+}
+
+var line_render_factory = function(uid) {
+    return function(){
+        var chart = nv.models.lineWithFocusChart()
+
+        chart.xAxis.tickFormat(d3.format('.02f'))
+        chart.yAxis.tickFormat(d3.format('.02f'))
+        
+        d3.select('#chart' + uid + ' svg')
+            .datum(line_dataLoader(uid))
+            .transition().duration(300)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+        return chart;
+    }
+}
+
+var dis_bar_render_factory = function(uid) {
+    return function(){
+            var chart = nv.models.discreteBarChart()
+                .x(function(d) { return d.label })
+                .y(function(d) { return d.value })
+                .staggerLabels(true)
+                .tooltips(false)
+                .showValues(true)
+      
+            //chart.xAxis.tickFormat(d3.format('.02f'))
+            chart.yAxis.tickFormat(d3.format('.02f'))
+            
+            d3.select('#chart' + uid + ' svg')
+                .datum(dis_bar_dataLoader(uid))
+                .transition().duration(300)
+                .call(chart);
+     
+            nv.utils.windowResize(chart.update);
+            return chart;
+    }
+}
 
 var scatter_dataLoader = function (uid) { //# groups,# points per group
-    data = data_store[uid]
-    var keyAttr = $('#select' + uid + 'series').val() ,
-    xAttr = $('#select' + uid + 'x').val(),
-    yAttr = $('#select' + uid + 'y').val(),
-    zAttr = $('#select' + uid + 'size').val(),
-    shapeAttr = $('#select' + uid + 'shape').val(),
+    data = grapher.data_store[uid]
+    attr = grapher.getAttr(uid, 'scatter')
+
+    if (!data || data[0][attr.x] == undefined || data[0][attr.y] == undefined){
+        return []
+    }
+
     plotData = [],
     n = 0;
 
-    console.debug(keyAttr + "*")
-
-    keyAttr = (keyAttr == "") ? defaults['k'] : keyAttr
-    xAttr = (xAttr == "") ? defaults['x'] : xAttr
-    yAttr = (yAttr == "") ? defaults['y'] : yAttr 
-    zAttr = (zAttr == "") ? defaults['z'] : zAttr 
-    shapeAttr = (shapeAttr == "") ? defaults['s'] : shapeAttr
-    //var colors = d3.scale.category10();
-    console.debug(data)
-    //var shapes = ['diamond', 'circle', 'triangle-up', 'square', 'cross', 'triangle-down'],
-    //var shapes = ['diamond', 'triangle-up', 'square', 'cross', 'triangle-down'],
-    var shapes = ['circle']
+    var shapes = ['diamond', 'circle', 'triangle-up', 'square', 'cross', 'triangle-down'],
     shape_map = {_lastkey: 0}    
     keySet = {};
     shapeSet = {};
@@ -56,203 +113,132 @@ var scatter_dataLoader = function (uid) { //# groups,# points per group
          if (shape_map[key] == undefined) {
              shape_map[key] = (shape_map['_lastkey'] + 1) % shapes.length
              shape_map['_lastkey'] = shape_map[key]
-             console.debug(key + ' : ' + shape_map[key])
          }
          if (shapeLegend.filter(function(s){return s.key == key}).length == 0){
-         //    shapeLegend.push({key: key, value: shapes[shape_map[key]]})
+             shapeLegend.push({key: key, value: shapes[shape_map[key]]})
          }
          return shapes[shape_map[key]]
     }
 
     for (var i = 0; i < data.length; i ++){
-        if (data[i][keyAttr] != undefined){
-            keySet[data[i][keyAttr]] = true
+        if (attr.k != ''){
+            if (data[i][attr.k] != undefined){
+                keySet[data[i][attr.k]] = true
+            }
         }
-        if (data[i][shapeAttr] != undefined){
-            shapeSet[data[i][keyAttr]] = true
+        if (attr.s != ''){
+            if (data[i][attr.s] != undefined){
+                shapeSet[data[i][attr.k]] = true
+            }
         }
     }
 
-    //shape_map["no call"] = "circle"
-    //shapeLegend.push({key: "no call", value: "circle"})
-
     var c = 0;
-    for (var key in keySet){
-        selectedEntries = data.filter(function(d){return d[keyAttr].toString() == key})
+    if (attr.k != ''){
+        for (var key in keySet){
+            selectedEntries = data.filter(function(d){return d[attr.k].toString() == key})
+            selectedEntries.sort(function(a,b){return a[attr.x]-b[attr.x]});
+            pstruct = {key: key, values: [], color: colors(key)}
+            for (var i = 0; i < selectedEntries.length; i++){
+                entry = selectedEntries[i];
+                pstruct.values.push({
+                    x: entry[attr.x],
+                    y: entry[attr.y],
+                    size: (attr.z=='') ? 10 : entry[attr.z],
+                    shape: (attr.s == '') ? 'circle' : get_shapes(entry[attr.s])
+                })
+            }
+            plotData.push(pstruct)
+            c += 1
+        }
+    } else {
+        console.debug('default key')
+        console.debug(data)
         pstruct = {key: key, values: [], color: colors(key)}
-        for (var i = 0; i < selectedEntries.length; i++){
-            selectedEntries.sort(function(a,b){return a[xAttr]-b[xAttr]});
-            entry = selectedEntries[i];
+        data.sort(function(a,b){return a[attr.x]-b[attr.x]});
+        for (var i = 0; i < data.length; i++){
+            entry = data[i];
             pstruct.values.push({
-                x: entry[xAttr],
-                y: entry[yAttr],
-                size: entry[zAttr],
-                shape: get_shapes(entry[shapeAttr])
+                x: entry[attr.x],
+                y: entry[attr.y],
+                size: (attr.z=='') ? 10 : entry[attr.z],
+                shape: (attr.s == '') ? 'circle' : get_shapes(entry[attr.s])
             })
         }
         plotData.push(pstruct)
-        c += 1
+    }
+    if (attr.s == ''){
+        shapeLegend = [{key: 'All', value: 'circle'}]
     }
     plotData['shapeLegendData'] = shapeLegend
-
+    console.debug(plotData)
     return plotData;
 }
 
-var scatter_handler = function(uid, name){
-    labels = ['x','y','size','shape','series'];
-    types = ['r','r','r','c','c']
-    make_controls(uid, labels, types) 
-
-    $('#myCarousel').carousel($(".carousel-inner").children().index($('#item'+uid)))
-
-    var nvRender = function() {
-        var chart = nv.models.scatterChart()
- 
-        chart.xAxis.tickFormat(d3.format('.02f'))
-        chart.yAxis.tickFormat(d3.format('.02f'))
-        
-        d3.select('#chart' + uid + ' svg')
-            .datum(scatter_dataLoader(uid))
-            .transition().duration(300)
-            .call(chart);
- 
-        nv.utils.windowResize(chart.update);
-        update_functions.push(chart.update);
-        return chart;
+var line_dataLoader = function (uid) {
+    data = grapher.data_store[uid]
+    attr = grapher.getAttr(uid, 'line')
+    
+    if (!data || data[0][attr.x] == undefined || data[0][attr.y] == undefined){
+        return []
     }
 
-    $(".select" + uid).change(function () {
-                                    $('#chart' + uid).html("<svg></svg>")
-                                    nv.addGraph(nvRender)
-                                })
-    nv.addGraph(nvRender)
-
-}
-
-var line_handler = function(uid, name){
-    labels = ['x','y','series'];
-    types = ['r','r','c']
-    make_controls(uid, labels, types) 
-    $('#myCarousel').carousel($(".carousel-inner").children().index($('#item'+uid)))
-
-    var nvRender = function() {
-        var chart = nv.models.lineWithFocusChart()
- 
-        chart.xAxis.tickFormat(d3.format('.02f'))
-        chart.yAxis.tickFormat(d3.format('.02f'))
-        
-        d3.select('#chart' + uid + ' svg')
-            .datum(line_dataLoader(uid))
-            .transition().duration(300)
-            .call(chart);
- 
-        nv.utils.windowResize(chart.update);
-        update_functions.push(chart.update);
-        return chart;
-    }
-
-    $(".select" + uid).change(function () {
-                                    $('#chart' + uid).html("<svg></svg>")
-                                    nv.addGraph(nvRender)
-                                })
-    nv.addGraph(nvRender)
-
-}
-
-var line_dataLoader = function (uid) { //# groups,# points per group
-    data = data_store[uid]
-    var keyAttr = $('#select' + uid + 'series').val() ,
-    xAttr = $('#select' + uid + 'x').val(),
-    yAttr = $('#select' + uid + 'y').val(),
-    plotData = [],
+    var plotData = [],
     n = 0;
-
-
-    keyAttr = (keyAttr == "") ? defaults['k'] : keyAttr
-    xAttr = (xAttr == "") ? defaults['x'] : xAttr
-    yAttr = (yAttr == "") ? defaults['y'] : yAttr 
-    //var colors = d3.scale.category10();d
-
-    //var shapes = ['diamond', 'circle', 'triangle-up', 'square', 'cross', 'triangle-down'],
     keySet = {};
 
     for (var i = 0; i < data.length; i ++){
-        if (data[i][keyAttr] != undefined){
-            keySet[data[i][keyAttr]] = true
+        if (data[i][attr.k] != undefined){
+            keySet[data[i][attr.k]] = true
         }
     }
     var c = 0;
-    for (var key in keySet){
-        selectedEntries = data.filter(function(d){return d[keyAttr] == key})
+    if (attr.k != ''){
+        for (var key in keySet){
+            selectedEntries = data.filter(function(d){return d[attr.k] == key})
+            selectedEntries.sort(function(a,b){return a[attr.x]-b[attr.x]});
+            pstruct = {key: key, values: [], color: colors(key)}
+            for (var i = 0; i < selectedEntries.length; i++){
+                entry = selectedEntries[i];
+                pstruct.values.push({
+                    x: entry[attr.x],
+                    y: entry[attr.y],
+                })
+            }
+            plotData.push(pstruct)
+            c += 1
+        }
+    } else {
+        data.sort(function(a,b){return a[attr.x]-b[attr.x]});
         pstruct = {key: key, values: [], color: colors(key)}
-        for (var i = 0; i < selectedEntries.length; i++){
-            selectedEntries.sort(function(a,b){return a[xAttr]-b[xAttr]});
-            entry = selectedEntries[i];
+        for (var i = 0; i < data.length; i++){
+            entry = data[i];
             pstruct.values.push({
-                x: entry[xAttr],
-                y: entry[yAttr],
+                x: entry[attr.x],
+                y: entry[attr.y],
             })
         }
-        //console.debug(plotData)
-        //console.debug(shape_map)
         plotData.push(pstruct)
         c += 1
     }
     return plotData;
 }
 
-var dis_bar_handler = function(uid, name){
-    labels = ['y','series'];
-    types = ['r','c']
-    make_controls(uid, labels, types) 
-
-    $('#myCarousel').carousel($(".carousel-inner").children().index($('#item'+uid)))
-
-    var nvRender = function() {
-        var chart = nv.models.discreteBarChart()
-            .x(function(d) { return d.label })
-            .y(function(d) { return d.value })
-            .staggerLabels(true)
-            .tooltips(false)
-            .showValues(true)
-  
-        chart.xAxis.tickFormat(d3.format('.02f'))
-        chart.yAxis.tickFormat(d3.format('.02f'))
-        
-        d3.select('#chart' + uid + ' svg')
-            .datum(dis_bar_dataLoader(uid))
-            .transition().duration(300)
-            .call(chart);
- 
-        nv.utils.windowResize(chart.update);
-        update_functions.push(chart.update);
-        return chart;
-    }
-
-    $(".select" + uid).change(function () {
-                                    $('#chart' + uid).html("<svg></svg>")
-                                    nv.addGraph(nvRender)
-                                })
-    nv.addGraph(nvRender)
-
-}
-
 var dis_bar_dataLoader = function (uid) { //# groups,# points per group
-    data = data_store[uid]
-    var keyAttr = $('#select' + uid + 'series').val() ,
-    yAttr = $('#select' + uid + 'y').val(),
-    plotData = [],
+    data = grapher.data_store[uid]
+    attr = grapher.getAttr(uid, 'dis_bar')
+    
+    if (!data || data[0][attr.y] == undefined || data[0][attr.k] == undefined){
+        return []
+    }
+    
+    var plotData = [],
     n = 0;
-
-    keyAttr = (keyAttr == "") ? defaults['k'] : keyAttr
-    yAttr = (yAttr == "") ? defaults['y'] : yAttr
-
-    console.debug(keyAttr + "*")
 
     for (var i = 0; i < data.length; i ++){
         plotData.push({
-            label: data[i][keyAttr],
-            value: data[i][yAttr]
+            label: data[i][attr.k],
+            value: data[i][attr.y]
         })
     }
     plotStruct = [{key: uid, values: plotData}];
@@ -261,18 +247,17 @@ var dis_bar_dataLoader = function (uid) { //# groups,# points per group
 }
 
 var graph_handler = function (uid, name, mode){
-    if (mode == undefined) mode = defaults['graphmode']
+    if (mode == undefined) mode = grapher.defaults['graphmode']
 
-    console.debug(mode)
     switch(mode){
     case "scatter":
-        scatter_handler(uid, name)
+        graph_setup(uid, name, mode, scatter_render_factory(uid))
         break;
     case "line":
-        line_handler(uid, name)
+        graph_setup(uid, name, mode, line_render_factory(uid))
         break;
     case "dis_bar":
-        dis_bar_handler(uid, name)
+        graph_setup(uid, name, mode, dis_bar_render_factory(uid))
         break;
     }
 }

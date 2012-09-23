@@ -8,51 +8,38 @@
         <link href="../static/css/bootstrap.css" rel="stylesheet">
         <link href="../static/css/font-awesome.css" rel="stylesheet">
         <link href="../static/css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="../static/nv/src/nv.d3.css" rel="stylesheet">
+        <link href="../static/css/nv.d3.css" rel="stylesheet">
         <link href="../static/css/graphing.css" rel="stylesheet">
         <script src="../static/js/handlebars.js"></script>
         <script src="../static/js/jquery/jquery-1.7.1.min.js"></script>
         <script src="../static/js/jquery/jquery.base64.js"></script>
         <script src="../static/js/jquery/jquery.url.js"></script>
         <script src="../static/js/bootstrap/bootstrap.js"></script>
-        <script src="../static/nv/d3.v2.js"></script>
-        <script src="../static/nv/lib/fisheye.js"></script>
-        <script src="../static/nv/nv.d3.js"></script>
+        <script src="../static/js/nv/d3.v2.js"></script>
+        <script src="../static/js/nv/lib/fisheye.js"></script>
+        <script src="../static/js/nv/nv.d3.js"></script>
         <script type='text/javascript'>
-
             function get_filename() {
                 return document.location.href.split("/").slice(-1)[0];
             }
-
-            //function reshape_dropbox() {
-            //    var dropbox = $("#dropbox");
-            //    var offset = dropbox.offset();
-            //}
 
             function init() {
                 var url = "http://" + document.location.host + "/g/" + get_filename();
                 var uid = get_filename().split(".")[0]
                 var ext = get_filename().split(".")[1].split("?")[0].toLowerCase()
-                $.extend(defaults,$.url().data.param.query)
+                $.extend(grapher.defaults,$.url().data.param.query)
                 $.get(
                         url,
                         "",
                         function(data) {
-                            process[ext]($.base64.decode(data),uid,"")
+                            grapher.process[ext]($.base64.decode(data),uid,"-")
                         },
                         "text"
-                );
-                // Set up the url boxes
-                //var urlbox = document.getElementById("url");
-                //urlbox.innerHTML = '<a href="'+url+'">'+url+'</a>';
-                //var ghurlbox = document.getElementById("ghurl");
-                //ghurlbox.innerText = "![Your_alt_text_here]("+url+")";
-                //var tracurlbox = document.getElementById("tracurl");
-                //tracurlbox.innerText = "[[Image("+url+")]]";
+                    );
+                
             }
         </script>
     </head>
-
     <body onload="init();">
 
         <!-- NAV BAR -->
@@ -85,66 +72,18 @@
 
         <!-- CAROUSEL -->
 
-        <div id="dropbox" style="margin-bottom:40px">
+        <div id='dropbox'></div>
+        <div style="margin-bottom:40px">
             <div class="row">
                 <div class="container">
                     <div class="span12 columns">
                             <div id="cinner">
                             </div>
                     </div>
-                    <div class="span12 columns">
-                        <p>Drop files to add pages to the carousel.</p>
-                    </div>
                 </div>    
             </div>
         </div>
 
-
-        <!-- HANDLEBAR TEMPLATES -->
-
-        <script id="defaults-template" type="text/x-handlebars-template">
-            {{#fields}}
-            <div class="control-group">
-                <input type="text" id='{{id}}-default' class="span3 g_option" placeholder="Default {{name}} accessor…">
-            </div>
-            {{/fields}}
-        </script>
-
-        <script id="control-template" type="text/x-handlebars-template">
-            <form class="form-horizontal">
-                <div class="span4">
-                    <fieldset>
-                        {{#label_1}}
-                        <div class="control-group">
-                            <label class="control-label" for="selectError">{{this}}</label>
-                            <select class="select{{../uid}}" id="select{{../uid}}{{this}}">
-                                <option> </option>
-                                {{#../fields}}
-                                <option>{{this}}</option>
-                                {{/../fields}}
-                            </select>
-                        </div>
-                        {{/label_1}}
-                    </fieldset>
-                </div>
-                <div class="span4 offset1">
-                    <fieldset>
-                        {{#label_2}}
-                        <div class="control-group">
-                            <label class="control-label" for="selectError">{{this}}</label>
-                            <select class="select{{../uid}}" id="select{{../uid}}{{this}}">
-                                <option> </option>
-                                {{#../fields}}
-                                <option>{{this}}</option>
-                                {{/../fields}}
-                            </select>
-                        </div>
-                        {{/label_2}}
-                    </fieldset>
-                </div>
-            </form>
-        </script>
-        
         <!-- MODALS -->
 
         <div class="modal hide" id="graphs">
@@ -181,7 +120,9 @@
         <script src="../static/js/handlers/graph_handler.js"></script>
         <script src="../static/js/handlers/csv_handler.js"></script>
         <script src="../static/js/handlers/json_handler.js"></script>
+        <script src="../static/js/handlers/code_handler.js"></script>
         <script src="../static/js/handlers/drop_handler.js"></script>
+        <script src="../static/js/grapher.js"></script>
 
         <script src="../static/js/onload.js"></script>
     </body>

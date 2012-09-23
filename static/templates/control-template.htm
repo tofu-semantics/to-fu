@@ -1,0 +1,34 @@
+    <form class="form-horizontal">
+        <div class="span4">
+            <fieldset>
+                {{#label_1}}
+                <div class="control-group"> 
+                    <label class="control-label" for="selectError">
+                            {{this}}
+                    </label>
+                    <select class="select{{../uid}}" id="select{{../uid}}{{this}}">
+                        <option> </option>
+                        {{#../fields}}
+                        <option>{{this}}</option>
+                        {{/../fields}}
+                    </select>
+                </div>
+                {{/label_1}}
+            </fieldset>
+        </div>
+        <div class="span4 offset1">
+            <fieldset>
+                {{#label_2}}
+                <div class="control-group">
+                    <label class="control-label" for="selectError">{{this}}</label>
+                    <select class="select{{../uid}}" id="select{{../uid}}{{this}}">
+                        <option> </option>
+                        {{#../fields}}
+                        <option>{{this}}</option>
+                        {{/../fields}}
+                    </select>
+                </div>
+                {{/label_2}}
+            </fieldset>
+        </div>
+    </form>

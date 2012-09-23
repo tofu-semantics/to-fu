@@ -1,3 +1,5 @@
+// ADAPTED FROM COUNSYL IMAGER BACKEND BY IMRAN HAQUE (ihaque@counsyl.com)
+
 var querystring = require("querystring"),
     fs = require("fs"),
     formidable = require("formidable"),
@@ -67,10 +69,14 @@ function static_file_writer(response, content_type) {
 
 function start(response, request) {
   console.log("Request handler 'start' was called.");
-  //fs.readFile("static/upload_index.htm", "binary",
-  //              static_file_writer(response, "text/html"));
   fs.readFile("static/carousel.htm", "binary",
                 static_file_writer(response, "text/html"));
+}
+
+function template(response, request){
+    var url = URL.parse(request.url)
+    var filename = 'static/templates' + url.pathname.slice(2)
+    fs.readFile(filename, "binary", static_file_writer(response, 'text/plain'))
 }
 
 function staticContent(response, request) {
@@ -172,14 +178,10 @@ function upload(response, request, multi_file) {
             var filepath = settings.storage_location + filename;
             extract_CR2_jpg(files.upload.path, filepath, filename, response) 
         } else {
-            //var filename = filebase + "." + extension;
             var filename = files.upload.name; 
             var filepath = settings.storage_location + filename;
             fs.rename(files.upload.path, filepath, function () {
                 response.writeHead(200, {"Content-Type": "text/plain"});
-            //    response.write(JSON.stringify({loc: "/d/"+filename,
-            //                                   is_image: is_image,
-            //                                   errors: []}));
                 response.write("")  
                 console.log("Successful upload to "+filepath);
                 response.end();
@@ -236,3 +238,4 @@ exports.displayResult = displayResult;
 exports.ignore = ignore;
 exports.error404 = error404;
 exports.staticContent = staticContent;
+exports.template = template;

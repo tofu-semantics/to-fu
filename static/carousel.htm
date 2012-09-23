@@ -8,19 +8,28 @@
         <link href="static/css/bootstrap.css" rel="stylesheet">
         <link href="static/css/font-awesome.css" rel="stylesheet">
         <link href="static/css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="static/nv/src/nv.d3.css" rel="stylesheet">
+        <link href="static/css/nv.d3.css" rel="stylesheet">
         <link href="static/css/pojoaque.css" rel="stylesheet">
         <link href="static/css/graphing.css" rel="stylesheet">
+        <link href="static/css/codemirror.css" rel="stylesheet">
+        <link href="static/css/blackboard.css" rel="stylesheet">
+
         <script src="static/js/handlebars.js"></script>
         <script src="static/js/jquery/jquery-1.7.1.min.js"></script>
         <script src="../static/js/jquery/jquery.base64.js"></script>
+
         <script src="static/js/bootstrap/bootstrap.js"></script>
-        <script src="static/nv/d3.v2.js"></script>
-        <script src="static/nv/lib/fisheye.js"></script>
-        <script src="static/nv/nv.d3.js"></script>
+        
+        <script src="static/js/nv/d3.v2.js"></script>
+        <script src="static/js/nv/lib/fisheye.js"></script>
+        <script src="static/js/nv/nv.d3.js"></script>
+        
         <script src="static/js/highlight.pack.js"></script>
-        <script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/rgbcolor.js"></script> 
-        <script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/canvg.js"></script> 
+
+        <script src="https://apis.google.com/js/client.js"></script>
+        <script src="static/js/google_auth.js"></script>
+        <script src="static/js/cm/codemirror.js"></script>
+        <script src="static/js/cm/mode/bigquery/bigquery.js"></script>
         <script type='text/javascript'>
             function reshape_dropbox() {
                 var dropbox = $("#dropbox");
@@ -30,16 +39,10 @@
     </head>
 
     <body onload="reshape_dropbox();" onresize="reshape_dropbox()">
-
-        <!-- LOADING BAR -->
-        <div class="alert">
-          <button type="button" class="close" data-dismiss="alert">×</button>
-          <strong>Loading...</strong> 
-        </div>
-
+        <div id='message-area'></div>
         <!-- NAV BAR -->
 
-        <div class="navbar navbar-fixed-bottom rnavbar-inverse">
+        <div id='authorize-button' class="navbar navbar-fixed-bottom rnavbar-inverse">
             <div class="navbar-inner">
               <div class="container">
                     <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -55,9 +58,11 @@
                             <ul class="dropdown-menu">
                                 <li>
                                 <a data-toggle="modal" href="#graphs" >Graphs</a>
-                                <a data-toggle="modal" href="#uploads" >Uploads</a>
                                 </li>
                             </ul>
+                            </li>
+                            <li>
+                            <a href="#" id="auth_button" onclick="bq.launchQuery(function(response){console.debug(response)});"><i class="icon-table icon-white"></i>BigQuery</a>
                             </li>
                         </ul>
                     </div><!--/.nav-collapse -->
@@ -74,7 +79,9 @@
                         <div id="myCarousel" class="carousel slide">
                             <div id="cinner" class="carousel-inner">
                                 <div class="item active">
-                                    <div style="position:absolute;top:40%;left:45%">start here</div>
+                                    <div style="position:absolute;top:40%;left:45%">
+                                        start here
+                                    </div>
                                 </div>
                             </div>
                             <a class="left carousel-control" href="#myCarousel" data-slide="prev"> <i class="icon-arrow-left"></i> </a>
@@ -88,70 +95,6 @@
 
         <!-- HANDLEBAR TEMPLATES -->
 
-        <script id="defaults-template" type="text/x-handlebars-template">
-            {{#fields}}
-            <div class="control-group">
-                <input type="text" id='{{id}}-default' class="span3 g_option" placeholder="Default {{name}} accessor…">
-            </div>
-            {{/fields}}
-        </script>
-
-        <script id="control-template" type="text/x-handlebars-template">
-            <form class="form-horizontal">
-                <div class="span4">
-                    <fieldset>
-                        {{#label_1}}
-                        <div class="control-group"> 
-                            <label class="control-label" for="selectError">
-                                    {{this}}
-                            </label>
-                            <select class="select{{../uid}}" id="select{{../uid}}{{this}}">
-                                <option> </option>
-                                {{#../fields}}
-                                <option>{{this}}</option>
-                                {{/../fields}}
-                            </select>
-                        </div>
-                        {{/label_1}}
-                    </fieldset>
-                </div>
-                <div class="span4 offset1">
-                    <fieldset>
-                        {{#label_2}}
-                        <div class="control-group">
-                            <label class="control-label" for="selectError">{{this}}</label>
-                            <select class="select{{../uid}}" id="select{{../uid}}{{this}}">
-                                <option> </option>
-                                {{#../fields}}
-                                <option>{{this}}</option>
-                                {{/../fields}}
-                            </select>
-                        </div>
-                        {{/label_2}}
-                    </fieldset>
-                </div>
-            </form>
-        </script>
-
-        <script id="action-panel-template" type="text/x-handlebars-template">
-            <span class="action-panel" id="ap-{{uid}}">
-                {{#dropbtns}}
-                <span class="dropdown">
-                <a id="{{type}}-{{../uid}}" role="button" href="#" class="dropdown-toggle action-panel-button" data-toggle="dropdown"><i class="{{icon}} icon-white"></i>{{text}}</a>
-                <ul class="dropdown-menu bottom-up pull-right" aria-labelledby="{{type}}-{{../uid}}" role="menu">
-                    <li style="text-align:left">
-                    {{#subbtns}}
-                    <a onclick="actionpanel('{{../../uid}}','{{../action}}','{{value}}');return false;" href="#" id="{{../type}}-{{type}}-{{../../uid}}" class="action-panel-button" action="{{../action}}" value="{{value}}"><i class="{{icon}} icon-white"></i>{{text}}</a>
-                    {{/subbtns}}
-                    </li>
-                </ul>
-                </span>
-                {{/dropbtns}}
-                {{#mbtns}}
-                <a onclick="actionpanel('{{../uid}}','{{action}}','{{value}}');return false;" href="#" id="{{type}}-{{../uid}}" role="button" class="action-panel-button" action="{{action}}" value="{{value}}"><i class="{{icon}} icon-white"></i>{{text}}</a>
-                {{/mbtns}}
-            </span>
-        </script>
         
         <!-- MODALS -->
 
@@ -179,6 +122,8 @@
             </div>
         </div>
 
+        <div class="modal hide" id="bq-modal"></div>
+
         <script src="static/js/jquery/jquery.csv-0.61.js"></script>
         <script src="static/js/jquery/jquery.ocupload-1.1.2.js"></script>
 
@@ -189,6 +134,7 @@
         <script src="static/js/handlers/json_handler.js"></script>
         <script src="static/js/handlers/drop_handler.js"></script>
         <script src="static/js/handlers/code_handler.js"></script>
+        <script src="static/js/grapher.js"></script>
 
         <script src="static/js/onload.js"></script>
     </body>
